@@ -1,0 +1,763 @@
+[
+  {
+    "id": "HOSP-001",
+    "name": "Rural Satellite Hospital",
+    "type": "Government Hospital",
+    "category": "Rural Healthcare",
+    "description": "Primary rural satellite healthcare facility offering subsidized primary consultations, maternal checks, and chronic illness screenings for village and peri-urban families.",
+    "images": [
+      "https://images.unsplash.com/photo-1586773860418-d37222d8fce3?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&w=1200&q=80"
+    ],
+    "address": {
+      "addressLine": "Village Road, Block 4",
+      "village": "Ram Nagar",
+      "city": "Jaipur Rural",
+      "district": "Jaipur",
+      "state": "Rajasthan",
+      "pincode": "303001"
+    },
+    "location": {
+      "latitude": 26.9124,
+      "longitude": 75.7873
+    },
+    "distance": {
+      "value": 10,
+      "unit": "km"
+    },
+    "travel": {
+      "estimatedTime": "25–30 minutes",
+      "mode": "Public Transport"
+    },
+    "services": [
+      {
+        "name": "General Physician",
+        "available": true,
+        "status": "Available",
+        "department": "Outpatient Department (OPD)",
+        "description": "Walk-in outpatient clinical consultations with certified medical officers."
+      },
+      {
+        "name": "Diabetes Screening",
+        "available": true,
+        "status": "Available",
+        "department": "NCD Cell",
+        "description": "Fasting glucose test, random blood sugar checks, and preventive dietary advice."
+      },
+      {
+        "name": "Blood Pressure Monitoring",
+        "available": true,
+        "status": "Available",
+        "department": "Vital Check Station",
+        "description": "Digital and sphygmomanometer blood pressure tracking."
+      },
+      {
+        "name": "Basic Pathology Lab",
+        "available": true,
+        "status": "Available",
+        "department": "Laboratory",
+        "description": "Routine blood counts, urine analysis, and malaria/dengue strip tests."
+      },
+      {
+        "name": "Emergency First Aid",
+        "available": true,
+        "status": "Available",
+        "department": "Emergency",
+        "description": "24/7 stabilized trauma management and immediate referral ambulance."
+      }
+    ],
+    "registration": {
+      "online": false,
+      "offline": true,
+      "offlineRegistration": {
+        "location": "Main Registration Counter (Window 1 & 2)",
+        "timings": "8:00 AM – 4:00 PM",
+        "fee": "Free",
+        "steps": [
+          "Visit the main entrance registration desk",
+          "Present your Aadhaar Card or any recognized government photo ID",
+          "State your primary health complaint to the desk attendant",
+          "Collect your registration token slip and OPD book",
+          "Proceed to Waiting Room #3 for doctor consultation"
+        ],
+        "estimatedWaitTime": "15–20 minutes"
+      }
+    },
+    "appointment": {
+      "onlineAvailable": false,
+      "offlineAvailable": true,
+      "onlineProcess": [],
+      "offlineProcess": [
+        "Visit the hospital during morning OPD hours",
+        "Obtain a daily numbered queue slip",
+        "Undergo vital signs check at the nursing station",
+        "Wait for token call in the covered waiting hall",
+        "Consult medical officer and collect free generic medicines at the Jan Aushadhi counter"
+      ]
+    },
+    "timings": {
+      "monday": "8:00 AM – 8:00 PM",
+      "tuesday": "8:00 AM – 8:00 PM",
+      "wednesday": "8:00 AM – 8:00 PM",
+      "thursday": "8:00 AM – 8:00 PM",
+      "friday": "8:00 AM – 8:00 PM",
+      "saturday": "8:00 AM – 8:00 PM",
+      "sunday": "10:00 AM – 2:00 PM",
+      "emergency": "24/7"
+    },
+    "costs": [
+      {
+        "service": "Doctor Consultation",
+        "min": 0,
+        "max": 20,
+        "currency": "INR",
+        "notes": "Free for BPL/PMJAY card holders, nominal ₹10 registration for others"
+      },
+      {
+        "service": "Diabetes Blood Glucose Test",
+        "min": 0,
+        "max": 50,
+        "currency": "INR",
+        "notes": "Covered free under National Health Mission"
+      },
+      {
+        "service": "Basic Blood Test (CBC)",
+        "min": 50,
+        "max": 150,
+        "currency": "INR",
+        "notes": "Subsidized government pathology rates"
+      },
+      {
+        "service": "Essential Generic Medicines",
+        "min": 0,
+        "max": 100,
+        "currency": "INR",
+        "notes": "Free under Mukhyamantri Nishulk Dava Yojana"
+      }
+    ],
+    "documents": [
+      {
+        "name": "Aadhaar Card",
+        "requiredFor": "Registration",
+        "required": true,
+        "description": "Used for patient identification and ABHA health ID linking."
+      },
+      {
+        "name": "Ayushman Bharat Card / PMJAY ID",
+        "requiredFor": "Cashless Benefits & Diagnostics",
+        "required": false,
+        "description": "Allows zero-cost secondary tests and specialist referral."
+      },
+      {
+        "name": "Previous Medical Prescriptions",
+        "requiredFor": "Consultation",
+        "required": false,
+        "description": "Helps attending doctor review previous medication regimen."
+      }
+    ],
+    "accessibility": {
+      "wheelchairAccessible": true,
+      "accessibleEntrance": true,
+      "accessibleToilet": true,
+      "signLanguageSupport": false,
+      "assistanceDesk": true,
+      "elderlyAssistance": true,
+      "disabilitySupport": true,
+      "languageSupport": [
+        "Hindi",
+        "Marwari",
+        "English"
+      ],
+      "rampsAvailable": true
+    },
+    "contact": {
+      "phone": "+91-141-2894101",
+      "emergencyPhone": "+91-141-2894108",
+      "helpDesk": "+91-141-2894102",
+      "website": "https://rajswasthya.nic.in"
+    },
+    "facilities": [
+      "Pharmacy (Jan Aushadhi)",
+      "Laboratory",
+      "ECG Room",
+      "Covered Waiting Area",
+      "Drinking Water Point",
+      "Ambulance Station"
+    ],
+    "governmentBenefits": [
+      {
+        "schemeId": "SCHEME-001",
+        "schemeName": "Ayushman Bharat – PMJAY",
+        "available": true,
+        "description": "Empanelled facility. Free OPD registration, pathology, and secondary hospital transfer."
+      },
+      {
+        "schemeId": "SCHEME-002",
+        "schemeName": "Mukhyamantri Ayushman Arogya Yojana (MAAY)",
+        "available": true,
+        "description": "Full coverage for listed outpatient diagnostic packages and essential drugs."
+      },
+      {
+        "schemeId": "SCHEME-003",
+        "schemeName": "Jan Aushadhi Generic Medicine Scheme",
+        "available": true,
+        "description": "Up to 90% discount on generic pharmaceuticals dispensed on premises."
+      }
+    ],
+    "recommendation": {
+      "isBestMatch": true,
+      "matchScore": 96,
+      "reasons": [
+        "Required diabetes and physician services actively available",
+        "Subsidized public healthcare with zero out-of-pocket costs under state health schemes",
+        "Closest rural facility with dedicated offline counter and local Hindi/Marwari assistance",
+        "Equipped with step-free wheelchair ramps and priority queue for elderly citizens"
+      ]
+    },
+    "accessPlan": {
+      "steps": [
+        "Check eligibility for Ayushman Bharat (PMJAY) or state government health card",
+        "Carry your Aadhaar card and previous prescription slips in a waterproof folder",
+        "Take the rural bus route #12 towards Ram Nagar hospital stop (25–30 mins)",
+        "Report to Window #1 (Main Registration Counter) between 8:00 AM and 11:00 AM",
+        "Complete vital signs screening and consult the OPD Medical Officer",
+        "Collect prescribed free medicines from the Jan Aushadhi counter before departure"
+      ],
+      "notes": "Visiting between 8:30 AM and 10:00 AM ensures minimal wait times before peak midday crowds."
+    },
+    "status": {
+      "active": true,
+      "verified": true,
+      "lastUpdated": "2026-09-01"
+    }
+  },
+  {
+    "id": "HOSP-002",
+    "name": "Community Health Centre (CHC) Ramgarh",
+    "type": "Government Hospital",
+    "category": "Community Health Centre",
+    "description": "30-bed secondary community healthcare hub providing 24/7 emergency delivery, comprehensive lab tests, and visiting specialist clinics.",
+    "images": [
+      "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1586773860418-d37222d8fce3?auto=format&fit=crop&w=1200&q=80"
+    ],
+    "address": {
+      "addressLine": "Main Highway Bypass",
+      "village": "Ramgarh",
+      "city": "Ramgarh",
+      "district": "Jaipur",
+      "state": "Rajasthan",
+      "pincode": "303104"
+    },
+    "location": {
+      "latitude": 26.9654,
+      "longitude": 75.8321
+    },
+    "distance": {
+      "value": 16,
+      "unit": "km"
+    },
+    "travel": {
+      "estimatedTime": "35–45 minutes",
+      "mode": "Bus / Shared Auto"
+    },
+    "services": [
+      {
+        "name": "General Physician",
+        "available": true,
+        "status": "Available"
+      },
+      {
+        "name": "Diabetes & Hypertension Clinic",
+        "available": true,
+        "status": "Available"
+      },
+      {
+        "name": "Pediatrics & Immunization",
+        "available": true,
+        "status": "Available"
+      },
+      {
+        "name": "Obstetrics & Gynecology",
+        "available": true,
+        "status": "Available"
+      },
+      {
+        "name": "X-Ray & Digital Ultrasound",
+        "available": true,
+        "status": "Available"
+      }
+    ],
+    "registration": {
+      "online": true,
+      "offline": true,
+      "offlineRegistration": {
+        "location": "Central Counter Room 102",
+        "timings": "8:30 AM – 3:30 PM",
+        "fee": "Free",
+        "steps": [
+          "Arrive at CHC Entrance Gate 2",
+          "Present Aadhaar or Ration Card at Counter Room 102",
+          "Receive token number and clinic room assignment",
+          "Wait for announcement on public display board"
+        ]
+      }
+    },
+    "appointment": {
+      "onlineAvailable": true,
+      "offlineAvailable": true,
+      "onlineProcess": [
+        "Open National Health Portal (eSanjeevani / ORS)",
+        "Select Rajasthan -> Jaipur -> CHC Ramgarh",
+        "Choose department and appointment slot",
+        "Download appointment confirmation QR code"
+      ],
+      "offlineProcess": [
+        "Walk in directly between 8:30 AM and 2:00 PM",
+        "Collect token at Room 102",
+        "Consult medical officer"
+      ]
+    },
+    "timings": {
+      "monday": "8:30 AM – 4:30 PM",
+      "tuesday": "8:30 AM – 4:30 PM",
+      "wednesday": "8:30 AM – 4:30 PM",
+      "thursday": "8:30 AM – 4:30 PM",
+      "friday": "8:30 AM – 4:30 PM",
+      "saturday": "8:30 AM – 1:30 PM",
+      "sunday": "Emergency Only",
+      "emergency": "24/7"
+    },
+    "costs": [
+      {
+        "service": "Doctor Consultation",
+        "min": 0,
+        "max": 10,
+        "currency": "INR"
+      },
+      {
+        "service": "Digital X-Ray",
+        "min": 70,
+        "max": 150,
+        "currency": "INR"
+      },
+      {
+        "service": "Ultrasound Sonography",
+        "min": 150,
+        "max": 300,
+        "currency": "INR"
+      }
+    ],
+    "documents": [
+      {
+        "name": "Aadhaar Card",
+        "requiredFor": "Registration",
+        "required": true
+      },
+      {
+        "name": "Jan Aadhaar Card",
+        "requiredFor": "State Scheme Verification",
+        "required": false
+      }
+    ],
+    "accessibility": {
+      "wheelchairAccessible": true,
+      "accessibleEntrance": true,
+      "accessibleToilet": true,
+      "signLanguageSupport": false,
+      "assistanceDesk": true,
+      "elderlyAssistance": true,
+      "disabilitySupport": true,
+      "languageSupport": [
+        "Hindi",
+        "English"
+      ]
+    },
+    "contact": {
+      "phone": "+91-141-2675001",
+      "emergencyPhone": "+91-141-2675009",
+      "helpDesk": "+91-141-2675002",
+      "website": ""
+    },
+    "facilities": [
+      "Inpatient 30-Bed Ward",
+      "Minor Operation Theatre",
+      "Maternity Ward",
+      "Pharmacy",
+      "Diagnostic Lab"
+    ],
+    "governmentBenefits": [
+      {
+        "schemeId": "SCHEME-001",
+        "schemeName": "Ayushman Bharat PMJAY",
+        "available": true,
+        "description": "Secondary level inpatient and outpatient coverage."
+      }
+    ],
+    "recommendation": {
+      "isBestMatch": false,
+      "reasons": [
+        "Expanded diagnostic facilities including digital ultrasound and X-Ray",
+        "Both online appointment booking and walk-in offline queues available",
+        "Subsidized government healthcare within 45 minutes travel time"
+      ]
+    },
+    "accessPlan": {
+      "steps": [
+        "Book online or plan to arrive before 10 AM",
+        "Carry Aadhaar and Jan Aadhaar cards",
+        "Check in at Room 102 for token generation",
+        "Attend physician consultation"
+      ]
+    },
+    "status": {
+      "active": true,
+      "verified": true,
+      "lastUpdated": "2026-08-25"
+    }
+  },
+  {
+    "id": "HOSP-003",
+    "name": "Sub-District Civil Hospital Kotputli",
+    "type": "Government Hospital",
+    "category": "Sub-District Hospital",
+    "description": "100-bed sub-divisional hospital featuring comprehensive specialist departments including cardiology, ophthalmology, and advanced diabetic neuropathy screening.",
+    "images": [
+      "https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1586773860418-d37222d8fce3?auto=format&fit=crop&w=1200&q=80"
+    ],
+    "address": {
+      "addressLine": "Court Road, Near Bus Stand",
+      "city": "Kotputli",
+      "district": "Jaipur",
+      "state": "Rajasthan",
+      "pincode": "303108"
+    },
+    "location": {
+      "latitude": 27.7012,
+      "longitude": 76.2045
+    },
+    "distance": {
+      "value": 28,
+      "unit": "km"
+    },
+    "travel": {
+      "estimatedTime": "50–60 minutes",
+      "mode": "State Express Bus"
+    },
+    "services": [
+      {
+        "name": "General Medicine",
+        "available": true,
+        "status": "Available"
+      },
+      {
+        "name": "Diabetic Foot & Retinopathy Care",
+        "available": true,
+        "status": "Available"
+      },
+      {
+        "name": "Cardiology Consultation & ECG",
+        "available": true,
+        "status": "Available"
+      },
+      {
+        "name": "Orthopedics & Physiotherapy",
+        "available": true,
+        "status": "Available"
+      },
+      {
+        "name": "Blood Bank & Transfusion",
+        "available": true,
+        "status": "Available"
+      }
+    ],
+    "registration": {
+      "online": true,
+      "offline": true,
+      "offlineRegistration": {
+        "location": "OPD Block A Ground Floor",
+        "timings": "8:00 AM – 2:00 PM",
+        "fee": "Free",
+        "steps": [
+          "Enter through Block A main gates",
+          "Line up at Senior Citizens / Women counter or General counter",
+          "Register using digital ABHA card or Aadhaar",
+          "Receive computer-printed OPD card"
+        ]
+      }
+    },
+    "appointment": {
+      "onlineAvailable": true,
+      "offlineAvailable": true,
+      "onlineProcess": [
+        "Visit ors.gov.in online registration system",
+        "Enter Aadhaar and OTP",
+        "Select Sub-District Hospital Kotputli",
+        "Confirm department and print slot slip"
+      ],
+      "offlineProcess": [
+        "Walk in to OPD Block A counter",
+        "Obtain token and wait in Department Area"
+      ]
+    },
+    "timings": {
+      "monday": "8:00 AM – 2:00 PM, 4:00 PM – 6:00 PM",
+      "tuesday": "8:00 AM – 2:00 PM, 4:00 PM – 6:00 PM",
+      "wednesday": "8:00 AM – 2:00 PM, 4:00 PM – 6:00 PM",
+      "thursday": "8:00 AM – 2:00 PM, 4:00 PM – 6:00 PM",
+      "friday": "8:00 AM – 2:00 PM, 4:00 PM – 6:00 PM",
+      "saturday": "8:00 AM – 1:00 PM",
+      "sunday": "Emergency Only",
+      "emergency": "24/7"
+    },
+    "costs": [
+      {
+        "service": "Consultation",
+        "min": 0,
+        "max": 10,
+        "currency": "INR"
+      },
+      {
+        "service": "ECG",
+        "min": 0,
+        "max": 50,
+        "currency": "INR"
+      },
+      {
+        "service": "HbA1c Blood Test",
+        "min": 0,
+        "max": 120,
+        "currency": "INR"
+      }
+    ],
+    "documents": [
+      {
+        "name": "Aadhaar Card",
+        "requiredFor": "Registration",
+        "required": true
+      },
+      {
+        "name": "PMJAY Golden Card",
+        "requiredFor": "Free Inpatient & Diagnostic Privileges",
+        "required": false
+      }
+    ],
+    "accessibility": {
+      "wheelchairAccessible": true,
+      "accessibleEntrance": true,
+      "accessibleToilet": true,
+      "signLanguageSupport": true,
+      "assistanceDesk": true,
+      "elderlyAssistance": true,
+      "disabilitySupport": true,
+      "languageSupport": [
+        "Hindi",
+        "English"
+      ]
+    },
+    "contact": {
+      "phone": "+91-1421-222300",
+      "emergencyPhone": "+91-1421-222305",
+      "helpDesk": "+91-1421-222301",
+      "website": "https://jaipur.rajasthan.gov.in"
+    },
+    "facilities": [
+      "100 Inpatient Beds",
+      "ICU Unit",
+      "24/7 Blood Storage",
+      "Digital X-Ray and Sonography",
+      "Major Operation Theatre"
+    ],
+    "governmentBenefits": [
+      {
+        "schemeId": "SCHEME-001",
+        "schemeName": "Ayushman Bharat PMJAY",
+        "available": true,
+        "description": "Full empanelled package support including tertiary referral."
+      }
+    ],
+    "recommendation": {
+      "isBestMatch": false,
+      "reasons": [
+        "Specialist diabetic care and advanced complications screening",
+        "Sign language interpreter and dedicated elderly assistance desk available",
+        "Complete 24/7 emergency and blood bank facilities"
+      ]
+    },
+    "accessPlan": {
+      "steps": [
+        "Book slot via ORS portal or board early morning state bus",
+        "Report to OPD Block A helpdesk",
+        "Consult specialized internal medicine physician"
+      ]
+    },
+    "status": {
+      "active": true,
+      "verified": true,
+      "lastUpdated": "2026-09-02"
+    }
+  },
+  {
+    "id": "HOSP-004",
+    "name": "Jan Seva Charitable Trust Hospital",
+    "type": "Trust / Non-Profit Hospital",
+    "category": "Affordable Healthcare",
+    "description": "Philanthropic non-profit healthcare institution offering deeply subsidized specialist clinics, sliding-scale pharmacy pricing, and community mobile outreach.",
+    "images": [
+      "https://images.unsplash.com/photo-1586773860418-d37222d8fce3?auto=format&fit=crop&w=1200&q=80"
+    ],
+    "address": {
+      "addressLine": "Near Old Toll Gate",
+      "city": "Amer",
+      "district": "Jaipur",
+      "state": "Rajasthan",
+      "pincode": "302028"
+    },
+    "location": {
+      "latitude": 26.9855,
+      "longitude": 75.8513
+    },
+    "distance": {
+      "value": 22,
+      "unit": "km"
+    },
+    "travel": {
+      "estimatedTime": "40–50 minutes",
+      "mode": "City Bus / Mini Bus"
+    },
+    "services": [
+      {
+        "name": "General Physician",
+        "available": true,
+        "status": "Available"
+      },
+      {
+        "name": "Diabetes Screening & Nutrition",
+        "available": true,
+        "status": "Available"
+      },
+      {
+        "name": "Eye & Cataract Screening",
+        "available": true,
+        "status": "Available"
+      },
+      {
+        "name": "Dialysis Support Centre",
+        "available": true,
+        "status": "Available"
+      }
+    ],
+    "registration": {
+      "online": false,
+      "offline": true,
+      "offlineRegistration": {
+        "location": "Front Porch Help Desk",
+        "timings": "9:00 AM – 5:00 PM",
+        "fee": "₹20 (One-time charitable card)",
+        "steps": [
+          "Collect token from volunteer reception desk",
+          "Provide phone number and name",
+          "Receive subsidized green card valid for 6 months"
+        ]
+      }
+    },
+    "appointment": {
+      "onlineAvailable": false,
+      "offlineAvailable": true,
+      "offlineProcess": [
+        "Same day walk-in tokens distributed from 8:30 AM",
+        "Priority given to rural cardholders and senior citizens"
+      ]
+    },
+    "timings": {
+      "monday": "9:00 AM – 5:00 PM",
+      "tuesday": "9:00 AM – 5:00 PM",
+      "wednesday": "9:00 AM – 5:00 PM",
+      "thursday": "9:00 AM – 5:00 PM",
+      "friday": "9:00 AM – 5:00 PM",
+      "saturday": "9:00 AM – 2:00 PM",
+      "sunday": "Closed",
+      "emergency": "First Aid Only"
+    },
+    "costs": [
+      {
+        "service": "Specialist Consultation",
+        "min": 50,
+        "max": 100,
+        "currency": "INR",
+        "notes": "Subsidized by trust donor fund"
+      },
+      {
+        "service": "HbA1c + Lipid Panel",
+        "min": 150,
+        "max": 250,
+        "currency": "INR"
+      }
+    ],
+    "documents": [
+      {
+        "name": "Any Government Photo ID (Aadhaar / Voter ID)",
+        "requiredFor": "Registration",
+        "required": true
+      },
+      {
+        "name": "Income Certificate / BPL Card (Optional)",
+        "requiredFor": "Full Fee Waiver",
+        "required": false
+      }
+    ],
+    "accessibility": {
+      "wheelchairAccessible": true,
+      "accessibleEntrance": true,
+      "accessibleToilet": true,
+      "signLanguageSupport": false,
+      "assistanceDesk": true,
+      "elderlyAssistance": true,
+      "disabilitySupport": true,
+      "languageSupport": [
+        "Hindi",
+        "English"
+      ]
+    },
+    "contact": {
+      "phone": "+91-141-2530190",
+      "helpDesk": "+91-141-2530192"
+    },
+    "facilities": [
+      "Subsidized Pharmacy",
+      "Dialysis Wing",
+      "Ambulance Service",
+      "Free Community Kitchen (Langar)"
+    ],
+    "governmentBenefits": [
+      {
+        "schemeId": "SCHEME-001",
+        "schemeName": "Ayushman Bharat PMJAY",
+        "available": true,
+        "description": "Empanelled charitable provider."
+      }
+    ],
+    "recommendation": {
+      "isBestMatch": false,
+      "reasons": [
+        "Highly compassionate staff and personalized elderly care volunteers",
+        "Very low out-of-pocket medication costs via donor subsidies",
+        "Free food and drinking water facilities for accompanying family members"
+      ]
+    },
+    "accessPlan": {
+      "steps": [
+        "Take city bus towards Amer bypass",
+        "Visit Front Porch Help Desk at 9:00 AM",
+        "Present Aadhaar and request Diabetic OPD consultation"
+      ]
+    },
+    "status": {
+      "active": true,
+      "verified": true,
+      "lastUpdated": "2026-08-30"
+    }
+  }
+]

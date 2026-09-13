@@ -1,6 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { UserProfile, PersonalizedHealthcarePlan } from '../types';
 import { DashboardSidebarTab } from './TemplateNavbar';
+import { Hospital } from '../types/hospital';
+import { hospitalService } from '../services/hospitalService';
+import { HospitalCard } from './hospitals/HospitalCard';
+import { HospitalDetails } from './hospitals/HospitalDetails';
+import { HospitalLocation } from './hospitals/HospitalLocation';
+import { HospitalsPage } from '../pages/HospitalsPage';
+import { HospitalDetailsPage } from '../pages/HospitalDetailsPage';
 import { 
   LayoutDashboard, 
   ClipboardList, 
@@ -43,6 +50,27 @@ export const TemplateDashboard: React.FC<TemplateDashboardProps> = ({
 }) => {
   const [selectedSchemeDetail, setSelectedSchemeDetail] = useState<string | null>(null);
   const [toastMessage, setToastMessage] = useState<string | null>(null);
+  const [recommendedHospital, setRecommendedHospital] = useState<Hospital | null>(null);
+  const [selectedHospitalDetailId, setSelectedHospitalDetailId] = useState<string | null>(null);
+  const [hospitalSubView, setHospitalSubView] = useState<'recommended' | 'directory'>('recommended');
+  const [allHospitalsCount, setAllHospitalsCount] = useState<number>(0);
+
+  useEffect(() => {
+    let isMounted = true;
+    hospitalService.getRecommendedHospitals(user).then(list => {
+      if (isMounted && list.length > 0) {
+        setRecommendedHospital(list[0]);
+      }
+    });
+    hospitalService.getHospitals().then(all => {
+      if (isMounted) {
+        setAllHospitalsCount(all.length);
+      }
+    });
+    return () => {
+      isMounted = false;
+    };
+  }, [user]);
 
   const showToast = (msg: string) => {
     setToastMessage(msg);
@@ -243,7 +271,7 @@ export const TemplateDashboard: React.FC<TemplateDashboardProps> = ({
                     </div>
 
                     <button
-                      onClick={() => showToast('Free blood glucose screening active at Rural Satellite Hospital.')}
+                      onClick={() => showToast(`Free blood glucose screening active at ${recommendedHospital?.name || 'partner health center'}.`)}
                       className="px-4 py-2 text-xs font-semibold rounded-lg border border-slate-300 hover:bg-slate-50 text-slate-700 transition-colors cursor-pointer self-start sm:self-center"
                     >
                       Check Eligibility
@@ -280,7 +308,11 @@ export const TemplateDashboard: React.FC<TemplateDashboardProps> = ({
                     </div>
                     <div>
                       <h4 className="text-sm font-bold text-slate-900">Recommended Hospital</h4>
-                      <p className="text-xs text-slate-500">Rural Satellite Hospital (10 km away)</p>
+                      <p className="text-xs text-slate-500">
+                        {recommendedHospital 
+                          ? `${recommendedHospital.name} (${recommendedHospital.distance.value} ${recommendedHospital.distance.unit} away)`
+                          : 'Verified Healthcare Facilities'}
+                      </p>
                     </div>
                   </div>
                   <ArrowRight className="w-4 h-4 text-slate-400 group-hover:text-emerald-800 group-hover:translate-x-1 transition-all" />
@@ -333,7 +365,9 @@ export const TemplateDashboard: React.FC<TemplateDashboardProps> = ({
                       Visit the Recommended Hospital
                     </h3>
                     <p className="text-xs sm:text-sm text-slate-600">
-                      Go to Rural Satellite Hospital (10 km away).
+                      {recommendedHospital 
+                        ? `Go to ${recommendedHospital.name} (${recommendedHospital.distance.value} ${recommendedHospital.distance.unit} away).`
+                        : 'Go to your nearest recommended healthcare facility.'}
                     </p>
                   </div>
                 </div>
@@ -413,235 +447,171 @@ export const TemplateDashboard: React.FC<TemplateDashboardProps> = ({
             </div>
           )}
 
-          {/* VIEW 3: NEARBY HOSPITALS / RECOMMENDED HOSPITAL & MAP (Screen 5 & 7 of Template.png) */}
+          {/* VIEW 3: NEARBY HOSPITALS / RECOMMENDED HOSPITAL & MAP (Data-Driven Architecture) */}
           {activeTab === 'nearby-hospitals' && (
-            <div className="space-y-8">
+            <div className="space-y-6">
               
-              {/* Screen 5: Recommended Hospital */}
-              <div className="space-y-6">
-                <div className="flex items-center justify-between border-b border-slate-200 pb-4">
-                  <div>
-                    <h1 className="text-xl sm:text-2xl font-black text-slate-900 tracking-tight">
-                      Recommended Hospital
-                    </h1>
-                    <p className="text-xs text-slate-500">Best matching healthcare facility for your location and needs</p>
-                  </div>
+              {/* If User is Viewing Full Details of a Specific Hospital */}
+              {selectedHospitalDetailId ? (
+                <div className="space-y-4">
+                  <HospitalDetailsPage
+                    hospitalId={selectedHospitalDetailId}
+                    onBack={() => {
+                      setSelectedHospitalDetailId(null);
+                      window.scrollTo({ top: 0, behavior: 'smooth' });
+                    }}
+                    onOpenPdfModal={onOpenPdfModal}
+                  />
                 </div>
-
-                {/* Main Hospital Card */}
-                <div className="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-xs">
-                  <div className="grid grid-cols-1 md:grid-cols-12 gap-0">
-                    
-                    {/* Hospital Building Graphic / Photo */}
-                    <div className="md:col-span-5 bg-slate-100 relative min-h-[220px] flex items-center justify-center overflow-hidden">
-                      <div className="w-full h-full bg-gradient-to-br from-teal-800 to-slate-900 p-6 flex flex-col justify-between text-white">
-                        <div className="flex justify-between items-start">
-                          <span className="px-2.5 py-1 rounded bg-white/20 text-white font-bold text-[10px] uppercase">
-                            Govt Hospital
-                          </span>
-                          <Building2 className="w-8 h-8 text-teal-300/80" />
-                        </div>
-                        <div>
-                          <h3 className="text-xl font-black text-white">
-                            Rural Satellite Hospital
-                          </h3>
-                          <p className="text-xs text-teal-200 mt-0.5">
-                            Village Road, Block XYZ, Lucknow
-                          </p>
-                        </div>
-                        <div className="text-[11px] text-slate-300 flex items-center gap-1.5 pt-2 border-t border-white/10">
-                          <Clock className="w-3.5 h-3.5 text-teal-300" />
-                          <span>Mon-Sat: 8 AM - 8 PM • 24/7 Emergency</span>
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Hospital Details on Right matching Screen 5 */}
-                    <div className="md:col-span-7 p-6 sm:p-7 space-y-4">
-                      <div className="flex items-start justify-between gap-2">
-                        <div>
-                          <h2 className="text-lg sm:text-xl font-bold text-slate-900">
-                            Rural Satellite Hospital
-                          </h2>
-                          <p className="text-xs text-slate-500 mt-0.5">
-                            Primary Rural Health Sub-District Centre
-                          </p>
-                        </div>
-                        <span className="px-3 py-1 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800 border border-emerald-200 shrink-0">
-                          Best Match
-                        </span>
-                      </div>
-
-                      <div className="space-y-2 text-xs sm:text-sm text-slate-700">
-                        <div className="flex items-center gap-2.5">
-                          <MapPin className="w-4 h-4 text-slate-400 shrink-0" />
-                          <span>10 km away</span>
-                        </div>
-
-                        <div className="flex items-center gap-2.5">
-                          <Bus className="w-4 h-4 text-slate-400 shrink-0" />
-                          <span>~ 25–30 minutes (by public transport)</span>
-                        </div>
-
-                        <div className="flex items-center gap-2.5">
-                          <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
-                          <span>Required Service: <strong className="text-slate-900">Available</strong></span>
-                        </div>
-
-                        <div className="flex items-center gap-2.5">
-                          <FileCheck className="w-4 h-4 text-slate-400 shrink-0" />
-                          <span>Registration: <strong className="text-slate-900">Offline</strong></span>
-                        </div>
-
-                        <div className="flex items-center gap-2.5">
-                          <Building2 className="w-4 h-4 text-slate-400 shrink-0" />
-                          <span>Type: <strong className="text-slate-900">Government Hospital</strong></span>
-                        </div>
-                      </div>
-
-                      <div className="flex flex-wrap items-center gap-3 pt-2">
-                        <button
-                          onClick={() => {
-                            const mapEl = document.getElementById('map-view-section');
-                            if (mapEl) mapEl.scrollIntoView({ behavior: 'smooth' });
-                          }}
-                          className="px-4 py-2 text-xs font-semibold rounded-lg border border-slate-300 hover:bg-slate-50 text-slate-700 transition-colors cursor-pointer"
-                        >
-                          View on Map
-                        </button>
-
-                        <button
-                          onClick={() => showToast('Opening transit directions to Rural Satellite Hospital...')}
-                          className="px-5 py-2 text-xs font-bold rounded-lg bg-teal-800 hover:bg-teal-900 text-white shadow-xs transition-colors cursor-pointer"
-                        >
-                          Get Directions
-                        </button>
-                      </div>
-
-                    </div>
-
-                  </div>
-                </div>
-
-                {/* Estimated Cost Sub-card matching Screen 5 */}
-                <div className="bg-white rounded-2xl p-6 border border-slate-200 shadow-xs space-y-4">
-                  <div className="flex items-center gap-2 text-slate-900">
-                    <div className="w-7 h-7 rounded-full bg-teal-50 text-teal-800 flex items-center justify-center font-bold text-sm">
-                      ₹
-                    </div>
-                    <h3 className="text-base font-bold">Estimated Cost</h3>
-                  </div>
-
-                  <div className="space-y-2 text-sm text-slate-600 max-w-md">
-                    <div className="flex justify-between items-center">
-                      <span>Normal Estimated Cost</span>
-                      <span className="font-semibold text-slate-900">₹1,200</span>
-                    </div>
-
-                    <div className="flex justify-between items-center text-emerald-700">
-                      <span>Potential Government Benefit</span>
-                      <span className="font-semibold">- ₹1,000</span>
-                    </div>
-
-                    <div className="border-t border-slate-200 pt-2 flex justify-between items-center text-base">
-                      <span className="font-bold text-slate-900">Estimated Payable Amount</span>
-                      <span className="font-extrabold text-emerald-700 text-lg">₹200</span>
-                    </div>
-                  </div>
-
-                  <p className="text-[11px] text-slate-400 italic">
-                    (Subject to eligibility and verification by the hospital or relevant authority.)
-                  </p>
-                </div>
-
-              </div>
-
-              {/* Screen 7: Hospital Location (Map View) */}
-              <div id="map-view-section" className="space-y-4 pt-4 border-t border-slate-200">
-                <h2 className="text-xl font-bold text-slate-900">
-                  Hospital Location
-                </h2>
-
-                <div className="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-xs relative">
+              ) : (
+                <div className="space-y-6">
                   
-                  {/* Stylized Visual Map Component with Route matching Screen 7 */}
-                  <div className="relative w-full h-80 sm:h-96 bg-slate-100 flex items-center justify-center overflow-hidden">
-                    
-                    {/* SVG Map Grid & Route visualization */}
-                    <svg className="w-full h-full object-cover" viewBox="0 0 800 450">
-                      {/* Background Map Blocks */}
-                      <rect width="800" height="450" fill="#e2e8f0" />
-                      
-                      {/* Terrain & Green Areas */}
-                      <rect x="50" y="40" width="220" height="150" rx="20" fill="#cbd5e1" opacity="0.6" />
-                      <rect x="340" y="240" width="380" height="180" rx="30" fill="#dcfce7" opacity="0.7" />
-                      <rect x="500" y="30" width="260" height="160" rx="25" fill="#f1f5f9" />
+                  {/* Sub-Navigation: Toggle between Recommended Facility and Full Directory */}
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-200 pb-4">
+                    <div>
+                      <h1 className="text-xl sm:text-2xl font-black text-slate-900 tracking-tight">
+                        {hospitalSubView === 'recommended' ? 'Recommended Hospital' : 'Hospital Directory & Search'}
+                      </h1>
+                      <p className="text-xs text-slate-500">
+                        {hospitalSubView === 'recommended'
+                          ? 'Best matching healthcare facility for your location and verified medical needs'
+                          : 'Search and filter all empanelled government and community healthcare centers'}
+                      </p>
+                    </div>
 
-                      {/* Road Network Lines */}
-                      <path d="M 100 450 L 100 0" stroke="#ffffff" strokeWidth="12" />
-                      <path d="M 0 350 L 800 350" stroke="#ffffff" strokeWidth="14" />
-                      <path d="M 0 160 L 800 160" stroke="#ffffff" strokeWidth="10" />
-                      <path d="M 450 0 L 450 450" stroke="#ffffff" strokeWidth="10" />
-                      
-                      {/* Highlighted Blue Route Line from User to Hospital */}
-                      <path 
-                        d="M 540 350 L 520 280 L 450 240 L 450 160 L 580 160 L 580 90" 
-                        fill="none" 
-                        stroke="#2563eb" 
-                        strokeWidth="6" 
-                        strokeLinecap="round" 
-                        strokeLinejoin="round" 
-                      />
-
-                      {/* Your Location Pin */}
-                      <circle cx="540" cy="350" r="10" fill="#2563eb" />
-                      <circle cx="540" cy="350" r="18" fill="#2563eb" opacity="0.25" />
-                      <text x="560" y="355" fill="#1e293b" fontSize="13" fontWeight="bold">Your Location</text>
-
-                      {/* Rural Satellite Hospital Pin */}
-                      <circle cx="580" cy="90" r="12" fill="#dc2626" />
-                      <circle cx="580" cy="90" r="22" fill="#dc2626" opacity="0.25" />
-                      <text x="605" y="95" fill="#0f172a" fontSize="14" fontWeight="bold">Rural Satellite Hospital</text>
-
-                      {/* Route Info Badge Floating on Route */}
-                      <g transform="translate(420, 200)">
-                        <rect width="110" height="42" rx="8" fill="#ffffff" stroke="#cbd5e1" filter="drop-shadow(0 2px 4px rgba(0,0,0,0.1))" />
-                        <text x="12" y="18" fill="#0f172a" fontSize="11" fontWeight="bold">10 km</text>
-                        <text x="12" y="32" fill="#64748b" fontSize="10">25–30 min</text>
-                      </g>
-                    </svg>
-
-                    {/* Left Overlay Card matching Screen 7 */}
-                    <div className="absolute top-4 left-4 max-w-xs w-full bg-white/95 backdrop-blur-md rounded-xl p-4 border border-slate-200 shadow-md text-xs space-y-2.5">
-                      <div>
-                        <h4 className="font-bold text-slate-900 text-sm">Rural Satellite Hospital</h4>
-                        <p className="text-slate-500 text-[11px]">Village Road, Block XYZ, Lucknow, Uttar Pradesh</p>
-                      </div>
-
-                      <div className="space-y-1 text-[11px] text-slate-600">
-                        <p><strong>Distance:</strong> 10 km</p>
-                        <p><strong>Estimated Travel Time:</strong> 25–30 minutes</p>
-                        <p><strong>Transport Options:</strong> Bus (nearest stop: 500 m), Shared Auto, Personal Vehicle</p>
-                      </div>
+                    <div className="flex items-center gap-2">
+                      <button
+                        type="button"
+                        onClick={() => setHospitalSubView('recommended')}
+                        className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-colors cursor-pointer ${
+                          hospitalSubView === 'recommended'
+                            ? 'bg-teal-800 text-white shadow-xs'
+                            : 'bg-white text-slate-700 border border-slate-300 hover:bg-slate-50'
+                        }`}
+                      >
+                        ★ Recommended Match
+                      </button>
 
                       <button
-                        onClick={() => showToast('Directions loaded for Bus Route 14 / Shared Auto.')}
-                        className="w-full py-2 rounded-lg bg-teal-800 hover:bg-teal-900 text-white font-bold text-xs transition-colors cursor-pointer"
+                        type="button"
+                        onClick={() => setHospitalSubView('directory')}
+                        className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-colors cursor-pointer ${
+                          hospitalSubView === 'directory'
+                            ? 'bg-teal-800 text-white shadow-xs'
+                            : 'bg-white text-slate-700 border border-slate-300 hover:bg-slate-50'
+                        }`}
                       >
-                        Get Directions
+                        All Facilities ({allHospitalsCount})
                       </button>
                     </div>
-
-                    {/* Zoom buttons in bottom-right */}
-                    <div className="absolute bottom-4 right-4 bg-white rounded-lg shadow-sm border border-slate-200 flex flex-col text-xs font-bold">
-                      <button className="px-2.5 py-1 border-b border-slate-200 hover:bg-slate-50 cursor-pointer">+</button>
-                      <button className="px-2.5 py-1 hover:bg-slate-50 cursor-pointer">−</button>
-                    </div>
-
                   </div>
 
+                  {/* Subview 1: Recommended Match View */}
+                  {hospitalSubView === 'recommended' && (
+                    <div className="space-y-8">
+                      {recommendedHospital ? (
+                        <>
+                          {/* Recommended Hospital Card */}
+                          <div className="space-y-2">
+                            <HospitalCard
+                              hospital={recommendedHospital}
+                              onSelectHospital={(id) => {
+                                setSelectedHospitalDetailId(id);
+                                window.scrollTo({ top: 0, behavior: 'smooth' });
+                              }}
+                              onViewOnMap={() => {
+                                const mapEl = document.getElementById('map-view-section');
+                                if (mapEl) mapEl.scrollIntoView({ behavior: 'smooth' });
+                              }}
+                            />
+                          </div>
+
+                          {/* Dynamic Estimated Cost Sub-card */}
+                          {recommendedHospital.costs && recommendedHospital.costs.length > 0 && (
+                            <div className="bg-white rounded-2xl p-6 border border-slate-200 shadow-xs space-y-4">
+                              <div className="flex items-center gap-2 text-slate-900">
+                                <div className="w-7 h-7 rounded-full bg-teal-50 text-teal-800 flex items-center justify-center font-bold text-sm">
+                                  ₹
+                                </div>
+                                <h3 className="text-base font-bold">Estimated Cost & Government Subsidies</h3>
+                              </div>
+
+                              <div className="space-y-2 text-sm text-slate-600 max-w-md">
+                                <div className="flex justify-between items-center">
+                                  <span>Standard Outpatient Care</span>
+                                  <span className="font-semibold text-slate-900">
+                                    ₹{recommendedHospital.costs.reduce((acc, c) => acc + (c.max || c.min || 0), 0) || 500}
+                                  </span>
+                                </div>
+
+                                {recommendedHospital.governmentBenefits.length > 0 && (
+                                  <div className="flex justify-between items-center text-emerald-700">
+                                    <span>Potential Government Subsidy</span>
+                                    <span className="font-semibold">- ₹400</span>
+                                  </div>
+                                )}
+
+                                <div className="border-t border-slate-200 pt-2 flex justify-between items-center text-base">
+                                  <span className="font-bold text-slate-900">Estimated Payable Amount</span>
+                                  <span className="font-extrabold text-emerald-700 text-lg">
+                                    ₹{Math.max(10, (recommendedHospital.costs.reduce((acc, c) => acc + (c.max || c.min || 0), 0) || 500) - 400)}
+                                  </span>
+                                </div>
+                              </div>
+
+                              <p className="text-[11px] text-slate-400 italic">
+                                (Subject to eligibility verification by {recommendedHospital.name} or relevant public authority.)
+                              </p>
+                            </div>
+                          )}
+
+                          {/* Hospital Location (Map View) */}
+                          <div id="map-view-section" className="space-y-4 pt-4 border-t border-slate-200">
+                            <h2 className="text-xl font-bold text-slate-900">
+                              Hospital Location & Navigation
+                            </h2>
+                            <HospitalLocation hospital={recommendedHospital} />
+                          </div>
+
+                          {/* Quick Banner to explore other hospitals */}
+                          <div className="p-5 rounded-2xl bg-gradient-to-r from-teal-50 to-emerald-50 border border-teal-200 flex flex-col sm:flex-row items-center justify-between gap-4">
+                            <div>
+                              <h4 className="text-sm font-bold text-teal-950">Looking for other facilities?</h4>
+                              <p className="text-xs text-teal-800 mt-0.5">
+                                Browse all {allHospitalsCount} verified healthcare facilities with specialized filters for distance, services, and accessibility.
+                              </p>
+                            </div>
+                            <button
+                              type="button"
+                              onClick={() => setHospitalSubView('directory')}
+                              className="px-4 py-2 rounded-xl bg-teal-800 hover:bg-teal-900 text-white text-xs font-bold transition-colors cursor-pointer shrink-0 shadow-xs"
+                            >
+                              Explore Directory ({allHospitalsCount})
+                            </button>
+                          </div>
+                        </>
+                      ) : (
+                        <div className="p-12 text-center bg-white rounded-2xl border border-slate-200 space-y-3">
+                          <Building2 className="w-10 h-10 text-slate-300 mx-auto" />
+                          <h3 className="text-base font-bold text-slate-800">Loading recommended hospital...</h3>
+                        </div>
+                      )}
+                    </div>
+                  )}
+
+                  {/* Subview 2: All Hospitals Directory View */}
+                  {hospitalSubView === 'directory' && (
+                    <HospitalsPage
+                      onSelectHospitalId={(id) => {
+                        setSelectedHospitalDetailId(id);
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                      }}
+                      onOpenPdfModal={onOpenPdfModal}
+                    />
+                  )}
+
                 </div>
-              </div>
+              )}
 
             </div>
           )}
@@ -681,7 +651,7 @@ export const TemplateDashboard: React.FC<TemplateDashboardProps> = ({
                   <div className="bg-slate-50 rounded-xl p-3 text-xs space-y-1.5 text-slate-700">
                     <p><strong>Benefits:</strong> Cashless hospital care, free pre- and post-hospitalization, free diagnostics.</p>
                     <p><strong>Required Documents:</strong> Aadhaar Card, Ration Card / SECC 2011 status.</p>
-                    <p><strong>Offline Verification:</strong> Ayushman Mitra help desk at Gate 1 of Rural Satellite Hospital.</p>
+                    <p><strong>Offline Verification:</strong> Ayushman Mitra help desk at Gate 1 of {recommendedHospital?.name || 'empanelled hospital'}.</p>
                   </div>
                 </div>
 

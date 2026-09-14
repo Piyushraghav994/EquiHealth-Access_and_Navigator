@@ -32,6 +32,7 @@ export const HospitalsPage: React.FC<HospitalsPageProps> = ({
   const [filteredHospitals, setFilteredHospitals] = useState<Hospital[]>([]);
   const [loading, setLoading] = useState(true);
   const [activeHospital, setActiveHospital] = useState<Hospital | null>(null);
+  const [showMapInDetails, setShowMapInDetails] = useState<boolean>(false);
 
   // Dynamic filter state
   const [searchQuery, setSearchQuery] = useState('');
@@ -117,6 +118,7 @@ export const HospitalsPage: React.FC<HospitalsPageProps> = ({
   };
 
   const handleSelectHospital = (id: string) => {
+    setShowMapInDetails(false);
     if (onSelectHospitalId) {
       onSelectHospitalId(id);
     } else {
@@ -131,14 +133,17 @@ export const HospitalsPage: React.FC<HospitalsPageProps> = ({
       onClearSelectedHospital();
     }
     setActiveHospital(null);
+    setShowMapInDetails(false);
   };
 
   const handleViewOnMap = (hospital: Hospital) => {
-    handleSelectHospital(hospital.id);
-    setTimeout(() => {
-      const mapEl = document.getElementById('details-map-view');
-      if (mapEl) mapEl.scrollIntoView({ behavior: 'smooth' });
-    }, 150);
+    setShowMapInDetails(true);
+    if (onSelectHospitalId) {
+      onSelectHospitalId(hospital.id);
+    } else {
+      setActiveHospital(hospital);
+    }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   // If viewing details of a specific hospital
@@ -148,6 +153,7 @@ export const HospitalsPage: React.FC<HospitalsPageProps> = ({
         hospital={activeHospital}
         onBack={handleBackToList}
         onOpenPdfModal={onOpenPdfModal}
+        initialShowMap={showMapInDetails}
       />
     );
   }

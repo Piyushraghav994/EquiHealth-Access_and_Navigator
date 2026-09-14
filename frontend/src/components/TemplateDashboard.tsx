@@ -52,6 +52,7 @@ export const TemplateDashboard: React.FC<TemplateDashboardProps> = ({
   const [toastMessage, setToastMessage] = useState<string | null>(null);
   const [recommendedHospital, setRecommendedHospital] = useState<Hospital | null>(null);
   const [selectedHospitalDetailId, setSelectedHospitalDetailId] = useState<string | null>(null);
+  const [openMapInDetails, setOpenMapInDetails] = useState<boolean>(false);
   const [hospitalSubView, setHospitalSubView] = useState<'recommended' | 'directory'>('recommended');
   const [allHospitalsCount, setAllHospitalsCount] = useState<number>(0);
 
@@ -456,8 +457,10 @@ export const TemplateDashboard: React.FC<TemplateDashboardProps> = ({
                 <div className="space-y-4">
                   <HospitalDetailsPage
                     hospitalId={selectedHospitalDetailId}
+                    initialShowMap={openMapInDetails}
                     onBack={() => {
                       setSelectedHospitalDetailId(null);
+                      setOpenMapInDetails(false);
                       window.scrollTo({ top: 0, behavior: 'smooth' });
                     }}
                     onOpenPdfModal={onOpenPdfModal}
@@ -508,7 +511,7 @@ export const TemplateDashboard: React.FC<TemplateDashboardProps> = ({
 
                   {/* Subview 1: Recommended Match View */}
                   {hospitalSubView === 'recommended' && (
-                    <div className="space-y-8">
+                    <div className="space-y-6">
                       {recommendedHospital ? (
                         <>
                           {/* Recommended Hospital Card */}
@@ -517,60 +520,15 @@ export const TemplateDashboard: React.FC<TemplateDashboardProps> = ({
                               hospital={recommendedHospital}
                               onSelectHospital={(id) => {
                                 setSelectedHospitalDetailId(id);
+                                setOpenMapInDetails(false);
                                 window.scrollTo({ top: 0, behavior: 'smooth' });
                               }}
-                              onViewOnMap={() => {
-                                const mapEl = document.getElementById('map-view-section');
-                                if (mapEl) mapEl.scrollIntoView({ behavior: 'smooth' });
+                              onViewOnMap={(h) => {
+                                setSelectedHospitalDetailId(h.id);
+                                setOpenMapInDetails(true);
+                                window.scrollTo({ top: 0, behavior: 'smooth' });
                               }}
                             />
-                          </div>
-
-                          {/* Dynamic Estimated Cost Sub-card */}
-                          {recommendedHospital.costs && recommendedHospital.costs.length > 0 && (
-                            <div className="bg-white rounded-2xl p-6 border border-slate-200 shadow-xs space-y-4">
-                              <div className="flex items-center gap-2 text-slate-900">
-                                <div className="w-7 h-7 rounded-full bg-teal-50 text-teal-800 flex items-center justify-center font-bold text-sm">
-                                  ₹
-                                </div>
-                                <h3 className="text-base font-bold">Estimated Cost & Government Subsidies</h3>
-                              </div>
-
-                              <div className="space-y-2 text-sm text-slate-600 max-w-md">
-                                <div className="flex justify-between items-center">
-                                  <span>Standard Outpatient Care</span>
-                                  <span className="font-semibold text-slate-900">
-                                    ₹{recommendedHospital.costs.reduce((acc, c) => acc + (c.max || c.min || 0), 0) || 500}
-                                  </span>
-                                </div>
-
-                                {recommendedHospital.governmentBenefits.length > 0 && (
-                                  <div className="flex justify-between items-center text-emerald-700">
-                                    <span>Potential Government Subsidy</span>
-                                    <span className="font-semibold">- ₹400</span>
-                                  </div>
-                                )}
-
-                                <div className="border-t border-slate-200 pt-2 flex justify-between items-center text-base">
-                                  <span className="font-bold text-slate-900">Estimated Payable Amount</span>
-                                  <span className="font-extrabold text-emerald-700 text-lg">
-                                    ₹{Math.max(10, (recommendedHospital.costs.reduce((acc, c) => acc + (c.max || c.min || 0), 0) || 500) - 400)}
-                                  </span>
-                                </div>
-                              </div>
-
-                              <p className="text-[11px] text-slate-400 italic">
-                                (Subject to eligibility verification by {recommendedHospital.name} or relevant public authority.)
-                              </p>
-                            </div>
-                          )}
-
-                          {/* Hospital Location (Map View) */}
-                          <div id="map-view-section" className="space-y-4 pt-4 border-t border-slate-200">
-                            <h2 className="text-xl font-bold text-slate-900">
-                              Hospital Location & Navigation
-                            </h2>
-                            <HospitalLocation hospital={recommendedHospital} />
                           </div>
 
                           {/* Quick Banner to explore other hospitals */}

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Hospital } from '../../types/hospital';
 import { HospitalImageGallery } from './HospitalImageGallery';
 import { HospitalServices } from './HospitalServices';
@@ -25,20 +25,30 @@ import {
   ArrowLeft, 
   CheckCircle2,
   Calendar,
-  Layers
+  Layers,
+  Navigation
 } from 'lucide-react';
 
 interface HospitalDetailsProps {
   hospital: Hospital;
   onBack?: () => void;
   onOpenPdfModal?: () => void;
+  initialShowMap?: boolean;
 }
 
 export const HospitalDetails: React.FC<HospitalDetailsProps> = ({
   hospital,
   onBack,
-  onOpenPdfModal
+  onOpenPdfModal,
+  initialShowMap = false
 }) => {
+  const [showMap, setShowMap] = useState<boolean>(initialShowMap);
+
+  useEffect(() => {
+    if (initialShowMap !== undefined) {
+      setShowMap(initialShowMap);
+    }
+  }, [initialShowMap]);
   const {
     name,
     type,
@@ -136,6 +146,20 @@ export const HospitalDetails: React.FC<HospitalDetailsProps> = ({
               <span className="text-[11px] font-bold text-slate-500 uppercase block">Transit Time</span>
               <span className="text-base font-extrabold text-slate-900">{travel.estimatedTime}</span>
             </div>
+            <button
+              type="button"
+              onClick={() => {
+                setShowMap(true);
+                setTimeout(() => {
+                  const mapEl = document.getElementById('details-map-view');
+                  if (mapEl) mapEl.scrollIntoView({ behavior: 'smooth' });
+                }, 100);
+              }}
+              className="inline-flex items-center gap-2 px-4 py-3 rounded-2xl bg-teal-800 hover:bg-teal-900 text-white text-xs font-bold shadow-xs transition-colors cursor-pointer self-stretch sm:self-auto justify-center"
+            >
+              <Navigation className="w-3.5 h-3.5" />
+              <span>{showMap ? 'Directions Active' : 'View Map / Directions'}</span>
+            </button>
           </div>
         </div>
 
@@ -227,15 +251,59 @@ export const HospitalDetails: React.FC<HospitalDetailsProps> = ({
         <HospitalTimings timings={timings} />
       </section>
 
-      {/* SECTION 8: COSTS */}
-      <section className="space-y-3">
+      {/* SECTION 8: ESTIMATED COST & GOVERNMENT SUBSIDIES */}
+      <section className="space-y-4">
         <h2 className="text-lg font-bold text-slate-900 flex items-center gap-2">
           <span className="w-5 h-5 rounded-full bg-teal-100 text-teal-800 flex items-center justify-center font-black text-xs">
             ₹
           </span>
-          <span>Estimated Outpatient & Diagnostic Costs</span>
+          <span>Estimated Cost & Government Subsidies</span>
         </h2>
-        <HospitalCosts costs={costs} />
+
+        {/* Dynamic Estimated Cost & Government Subsidies Card */}
+        <div className="bg-white rounded-2xl p-6 border border-slate-200 shadow-xs space-y-4">
+          <div className="flex items-center gap-2 text-slate-900">
+            <div className="w-7 h-7 rounded-full bg-teal-50 text-teal-800 flex items-center justify-center font-bold text-sm">
+              ₹
+            </div>
+            <h3 className="text-base font-bold">Estimated Cost & Government Subsidies</h3>
+          </div>
+
+          <div className="space-y-2 text-sm text-slate-600 max-w-md">
+            <div className="flex justify-between items-center">
+              <span>Standard Outpatient Care</span>
+              <span className="font-semibold text-slate-900">
+                ₹{costs.reduce((acc, c) => acc + (c.max || c.min || 0), 0) || 500}
+              </span>
+            </div>
+
+            {governmentBenefits && governmentBenefits.length > 0 && (
+              <div className="flex justify-between items-center text-emerald-700 font-medium">
+                <span>Potential Government Subsidy</span>
+                <span className="font-semibold">- ₹400</span>
+              </div>
+            )}
+
+            <div className="border-t border-slate-200 pt-2 flex justify-between items-center text-base">
+              <span className="font-bold text-slate-900">Estimated Payable Amount</span>
+              <span className="font-extrabold text-emerald-700 text-lg">
+                ₹{Math.max(10, (costs.reduce((acc, c) => acc + (c.max || c.min || 0), 0) || 500) - (governmentBenefits && governmentBenefits.length > 0 ? 400 : 0))}
+              </span>
+            </div>
+          </div>
+
+          <p className="text-[11px] text-slate-400 italic">
+            (Subject to eligibility verification by {name} or relevant public authority.)
+          </p>
+        </div>
+
+        {/* Itemized Diagnostic and Outpatient Service Breakdown */}
+        <div className="space-y-2 pt-1">
+          <h3 className="text-xs font-bold uppercase tracking-wider text-slate-500">
+            Outpatient & Diagnostic Service Breakdown
+          </h3>
+          <HospitalCosts costs={costs} />
+        </div>
       </section>
 
       {/* SECTION 9: ACCESSIBILITY & SUPPORT */}
@@ -302,11 +370,67 @@ export const HospitalDetails: React.FC<HospitalDetailsProps> = ({
 
       {/* SECTION 12: HOSPITAL LOCATION / MAP */}
       <section id="details-map-view" className="space-y-3">
-        <h2 className="text-lg font-bold text-slate-900 flex items-center gap-2">
-          <MapPin className="w-5 h-5 text-teal-700" />
-          <span>Location & Geographic Navigation</span>
-        </h2>
-        <HospitalLocation hospital={hospital} />
+        <div className="flex items-center justify-between">
+          <h2 className="text-lg font-bold text-slate-900 flex items-center gap-2">
+            <MapPin className="w-5 h-5 text-teal-700" />
+            <span>Location & Geographic Navigation</span>
+          </h2>
+          {showMap && (
+            <button
+              type="button"
+              onClick={() => setShowMap(false)}
+              className="text-xs font-semibold text-slate-500 hover:text-slate-800 underline cursor-pointer"
+            >
+              Hide Map
+            </button>
+          )}
+        </div>
+
+        {!showMap ? (
+          <div className="bg-white rounded-2xl border border-slate-200 p-6 shadow-xs space-y-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 text-xs sm:text-sm">
+              <div className="space-y-1 md:col-span-2">
+                <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wider block">
+                  Physical Address
+                </span>
+                <p className="font-semibold text-slate-900 leading-snug">
+                  {fullAddress}
+                </p>
+              </div>
+
+              <div className="space-y-1">
+                <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wider block">
+                  Transit & Distance
+                </span>
+                <p className="font-bold text-slate-900">
+                  {distance.value} {distance.unit}
+                </p>
+                <p className="text-slate-600 text-xs flex items-center gap-1">
+                  <Bus className="w-3.5 h-3.5 text-slate-400" />
+                  <span>~ {travel.estimatedTime} ({travel.mode})</span>
+                </p>
+              </div>
+            </div>
+
+            <div className="pt-2 border-t border-slate-100 flex flex-wrap items-center gap-3">
+              <button
+                type="button"
+                onClick={() => setShowMap(true)}
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-teal-800 hover:bg-teal-900 text-white text-xs sm:text-sm font-bold shadow-xs transition-colors cursor-pointer"
+              >
+                <Navigation className="w-4 h-4" />
+                <span>View Map / Directions</span>
+              </button>
+              <span className="text-xs text-slate-500">
+                Click to open patient route and interactive navigation map
+              </span>
+            </div>
+          </div>
+        ) : (
+          <div className="space-y-3">
+            <HospitalLocation hospital={hospital} />
+          </div>
+        )}
       </section>
 
       {/* SECTION 15: CONTACT INFORMATION */}

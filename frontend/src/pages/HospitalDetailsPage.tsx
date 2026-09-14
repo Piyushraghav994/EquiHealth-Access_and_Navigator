@@ -8,12 +8,14 @@ interface HospitalDetailsPageProps {
   hospitalId: string;
   onBack?: () => void;
   onOpenPdfModal?: () => void;
+  initialShowMap?: boolean;
 }
 
 export const HospitalDetailsPage: React.FC<HospitalDetailsPageProps> = ({
   hospitalId,
   onBack,
-  onOpenPdfModal
+  onOpenPdfModal,
+  initialShowMap = false
 }) => {
   const [hospital, setHospital] = useState<Hospital | null>(null);
   const [loading, setLoading] = useState(true);
@@ -73,6 +75,7 @@ export const HospitalDetailsPage: React.FC<HospitalDetailsPageProps> = ({
       hospital={hospital}
       onBack={onBack}
       onOpenPdfModal={onOpenPdfModal}
+      initialShowMap={initialShowMap}
     />
   );
 };

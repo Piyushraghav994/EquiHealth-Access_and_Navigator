@@ -1,0 +1,6 @@
+{
+  "name": "EquiHealth Navigator",
+  "description": "Healthcare for Everyone, Made Simple. Find the right healthcare services, government schemes and nearby hospitals based on your unique needs.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

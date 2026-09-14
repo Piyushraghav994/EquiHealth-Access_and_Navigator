@@ -88,18 +88,18 @@ export const HospitalDetails: React.FC<HospitalDetailsProps> = ({
       
       {/* Navigation Header / Back Button */}
       {onBack && (
-        <div className="flex items-center justify-between">
+        <div className="flex flex-wrap items-center justify-between gap-3">
           <button
             type="button"
             onClick={onBack}
-            className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl border border-slate-300 bg-white hover:bg-slate-50 text-slate-700 text-xs sm:text-sm font-bold shadow-2xs transition-colors cursor-pointer"
+            className="min-h-[44px] inline-flex items-center gap-2 px-3.5 py-2 rounded-xl border border-slate-300 bg-white hover:bg-slate-50 text-slate-700 text-xs sm:text-sm font-bold shadow-2xs transition-colors cursor-pointer"
           >
             <ArrowLeft className="w-4 h-4" />
             <span>Back to Hospitals</span>
           </button>
 
           {recommendation?.isBestMatch && (
-            <span className="px-3.5 py-1 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800 border border-emerald-200">
+            <span className="px-3.5 py-1.5 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800 border border-emerald-200 shrink-0">
               Best Match Healthcare Facility
             </span>
           )}
@@ -107,9 +107,9 @@ export const HospitalDetails: React.FC<HospitalDetailsProps> = ({
       )}
 
       {/* SECTION 1: HOSPITAL OVERVIEW HERO */}
-      <div className="bg-white rounded-3xl border border-slate-200 p-6 sm:p-8 shadow-xs space-y-5">
+      <div className="bg-white rounded-3xl border border-slate-200 p-5 sm:p-8 shadow-xs space-y-5">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-          <div className="space-y-1.5">
+          <div className="space-y-1.5 min-w-0">
             <div className="flex flex-wrap items-center gap-2">
               <span className="px-2.5 py-1 rounded-md bg-teal-50 text-teal-800 font-bold text-xs uppercase tracking-wider border border-teal-200">
                 {type}
@@ -127,22 +127,22 @@ export const HospitalDetails: React.FC<HospitalDetailsProps> = ({
               )}
             </div>
 
-            <h1 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">
+            <h1 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight break-words">
               {name}
             </h1>
 
-            <p className="text-xs sm:text-sm text-slate-500 flex items-center gap-1.5">
-              <MapPin className="w-4 h-4 text-teal-700 shrink-0" />
-              <span>{fullAddress}</span>
+            <p className="text-xs sm:text-sm text-slate-500 flex items-start sm:items-center gap-1.5">
+              <MapPin className="w-4 h-4 text-teal-700 shrink-0 mt-0.5 sm:mt-0" />
+              <span className="break-words">{fullAddress}</span>
             </p>
           </div>
 
-          <div className="flex flex-wrap items-center gap-3">
-            <div className="bg-slate-50 border border-slate-200 rounded-2xl p-3 px-4 text-center">
+          <div className="flex flex-wrap items-center gap-2.5 sm:gap-3">
+            <div className="flex-1 sm:flex-initial min-w-[100px] bg-slate-50 border border-slate-200 rounded-2xl p-3 px-4 text-center">
               <span className="text-[11px] font-bold text-slate-500 uppercase block">Distance</span>
               <span className="text-base font-extrabold text-slate-900">{distance.value} {distance.unit}</span>
             </div>
-            <div className="bg-slate-50 border border-slate-200 rounded-2xl p-3 px-4 text-center">
+            <div className="flex-1 sm:flex-initial min-w-[100px] bg-slate-50 border border-slate-200 rounded-2xl p-3 px-4 text-center">
               <span className="text-[11px] font-bold text-slate-500 uppercase block">Transit Time</span>
               <span className="text-base font-extrabold text-slate-900">{travel.estimatedTime}</span>
             </div>
@@ -155,7 +155,7 @@ export const HospitalDetails: React.FC<HospitalDetailsProps> = ({
                   if (mapEl) mapEl.scrollIntoView({ behavior: 'smooth' });
                 }, 100);
               }}
-              className="inline-flex items-center gap-2 px-4 py-3 rounded-2xl bg-teal-800 hover:bg-teal-900 text-white text-xs font-bold shadow-xs transition-colors cursor-pointer self-stretch sm:self-auto justify-center"
+              className="min-h-[44px] inline-flex items-center gap-2 px-4 py-3 rounded-2xl bg-teal-800 hover:bg-teal-900 text-white text-xs font-bold shadow-xs transition-colors cursor-pointer w-full sm:w-auto justify-center"
             >
               <Navigation className="w-3.5 h-3.5" />
               <span>{showMap ? 'Directions Active' : 'View Map / Directions'}</span>

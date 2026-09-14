@@ -36,7 +36,7 @@ export const ReviewStep: React.FC<ReviewStepProps> = ({
         <div className="bg-white rounded-xl border border-slate-200 p-4 sm:p-5 shadow-xs transition-all hover:border-slate-300">
           <div className="flex items-center justify-between border-b border-slate-100 pb-3 mb-3">
             <div className="flex items-center gap-2 text-teal-900 font-bold text-sm">
-              <span className="p-1.5 rounded-lg bg-teal-50 text-teal-800">
+              <span className="p-1.5 rounded-lg bg-teal-50 text-teal-800 shrink-0">
                 <User className="w-4 h-4" />
               </span>
               <span>1. Basic Information</span>
@@ -44,7 +44,7 @@ export const ReviewStep: React.FC<ReviewStepProps> = ({
             <button
               type="button"
               onClick={() => onEditSection(0)}
-              className="text-xs font-semibold text-teal-800 hover:text-teal-900 bg-teal-50 hover:bg-teal-100/80 px-3 py-1.5 rounded-lg flex items-center gap-1.5 transition-colors cursor-pointer"
+              className="min-h-[36px] text-xs font-semibold text-teal-800 hover:text-teal-900 bg-teal-50 hover:bg-teal-100/80 px-3 py-1.5 rounded-lg flex items-center gap-1.5 transition-colors cursor-pointer shrink-0"
             >
               <Edit2 className="w-3 h-3" />
               <span>Edit</span>
@@ -53,7 +53,7 @@ export const ReviewStep: React.FC<ReviewStepProps> = ({
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-2.5 gap-x-4 text-xs sm:text-sm">
             <div>
               <span className="text-slate-500 block text-xs">Full Name</span>
-              <span className="font-semibold text-slate-900">{basicInformation.fullName || '—'}</span>
+              <span className="font-semibold text-slate-900 break-words">{basicInformation.fullName || '—'}</span>
             </div>
             <div>
               <span className="text-slate-500 block text-xs">Age</span>
@@ -65,7 +65,7 @@ export const ReviewStep: React.FC<ReviewStepProps> = ({
             </div>
             <div>
               <span className="text-slate-500 block text-xs">Phone Number</span>
-              <span className="font-semibold text-slate-900">{basicInformation.phone || '—'}</span>
+              <span className="font-semibold text-slate-900 break-words">{basicInformation.phone || '—'}</span>
             </div>
           </div>
         </div>
@@ -74,7 +74,7 @@ export const ReviewStep: React.FC<ReviewStepProps> = ({
         <div className="bg-white rounded-xl border border-slate-200 p-4 sm:p-5 shadow-xs transition-all hover:border-slate-300">
           <div className="flex items-center justify-between border-b border-slate-100 pb-3 mb-3">
             <div className="flex items-center gap-2 text-teal-900 font-bold text-sm">
-              <span className="p-1.5 rounded-lg bg-teal-50 text-teal-800">
+              <span className="p-1.5 rounded-lg bg-teal-50 text-teal-800 shrink-0">
                 <MapPin className="w-4 h-4" />
               </span>
               <span>2. Geographical Background</span>
@@ -82,7 +82,7 @@ export const ReviewStep: React.FC<ReviewStepProps> = ({
             <button
               type="button"
               onClick={() => onEditSection(1)}
-              className="text-xs font-semibold text-teal-800 hover:text-teal-900 bg-teal-50 hover:bg-teal-100/80 px-3 py-1.5 rounded-lg flex items-center gap-1.5 transition-colors cursor-pointer"
+              className="min-h-[36px] text-xs font-semibold text-teal-800 hover:text-teal-900 bg-teal-50 hover:bg-teal-100/80 px-3 py-1.5 rounded-lg flex items-center gap-1.5 transition-colors cursor-pointer shrink-0"
             >
               <Edit2 className="w-3 h-3" />
               <span>Edit</span>
@@ -103,7 +103,7 @@ export const ReviewStep: React.FC<ReviewStepProps> = ({
             </div>
             <div>
               <span className="text-slate-500 block text-xs">City / Village</span>
-              <span className="font-semibold text-slate-900">{geographicalInformation.cityVillage || '—'}</span>
+              <span className="font-semibold text-slate-900 break-words">{geographicalInformation.cityVillage || '—'}</span>
             </div>
           </div>
         </div>
@@ -112,7 +112,7 @@ export const ReviewStep: React.FC<ReviewStepProps> = ({
         <div className="bg-white rounded-xl border border-slate-200 p-4 sm:p-5 shadow-xs transition-all hover:border-slate-300">
           <div className="flex items-center justify-between border-b border-slate-100 pb-3 mb-3">
             <div className="flex items-center gap-2 text-teal-900 font-bold text-sm">
-              <span className="p-1.5 rounded-lg bg-teal-50 text-teal-800">
+              <span className="p-1.5 rounded-lg bg-teal-50 text-teal-800 shrink-0">
                 <IndianRupee className="w-4 h-4" />
               </span>
               <span>3. Financial Condition</span>
@@ -120,7 +120,7 @@ export const ReviewStep: React.FC<ReviewStepProps> = ({
             <button
               type="button"
               onClick={() => onEditSection(2)}
-              className="text-xs font-semibold text-teal-800 hover:text-teal-900 bg-teal-50 hover:bg-teal-100/80 px-3 py-1.5 rounded-lg flex items-center gap-1.5 transition-colors cursor-pointer"
+              className="min-h-[36px] text-xs font-semibold text-teal-800 hover:text-teal-900 bg-teal-50 hover:bg-teal-100/80 px-3 py-1.5 rounded-lg flex items-center gap-1.5 transition-colors cursor-pointer shrink-0"
             >
               <Edit2 className="w-3 h-3" />
               <span>Edit</span>
@@ -137,7 +137,7 @@ export const ReviewStep: React.FC<ReviewStepProps> = ({
             </div>
             <div>
               <span className="text-slate-500 block text-xs">Employment Status</span>
-              <span className="font-semibold text-slate-900">{financialInformation.employmentStatus || '—'}</span>
+              <span className="font-semibold text-slate-900 break-words">{financialInformation.employmentStatus || '—'}</span>
             </div>
           </div>
         </div>
@@ -146,7 +146,7 @@ export const ReviewStep: React.FC<ReviewStepProps> = ({
         <div className="bg-white rounded-xl border border-slate-200 p-4 sm:p-5 shadow-xs transition-all hover:border-slate-300">
           <div className="flex items-center justify-between border-b border-slate-100 pb-3 mb-3">
             <div className="flex items-center gap-2 text-teal-900 font-bold text-sm">
-              <span className="p-1.5 rounded-lg bg-teal-50 text-teal-800">
+              <span className="p-1.5 rounded-lg bg-teal-50 text-teal-800 shrink-0">
                 <Languages className="w-4 h-4" />
               </span>
               <span>4. Accessibility & Language</span>
@@ -154,7 +154,7 @@ export const ReviewStep: React.FC<ReviewStepProps> = ({
             <button
               type="button"
               onClick={() => onEditSection(3)}
-              className="text-xs font-semibold text-teal-800 hover:text-teal-900 bg-teal-50 hover:bg-teal-100/80 px-3 py-1.5 rounded-lg flex items-center gap-1.5 transition-colors cursor-pointer"
+              className="min-h-[36px] text-xs font-semibold text-teal-800 hover:text-teal-900 bg-teal-50 hover:bg-teal-100/80 px-3 py-1.5 rounded-lg flex items-center gap-1.5 transition-colors cursor-pointer shrink-0"
             >
               <Edit2 className="w-3 h-3" />
               <span>Edit</span>
@@ -167,11 +167,11 @@ export const ReviewStep: React.FC<ReviewStepProps> = ({
             </div>
             <div>
               <span className="text-slate-500 block text-xs">Preferred Language</span>
-              <span className="font-semibold text-slate-900">{displayLanguage}</span>
+              <span className="font-semibold text-slate-900 break-words">{displayLanguage}</span>
             </div>
             <div>
               <span className="text-slate-500 block text-xs">Accessibility Requirement</span>
-              <span className="font-semibold text-slate-900">{accessibilityInformation.accessibilityRequirement || '—'}</span>
+              <span className="font-semibold text-slate-900 break-words">{accessibilityInformation.accessibilityRequirement || '—'}</span>
             </div>
           </div>
         </div>

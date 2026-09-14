@@ -234,13 +234,13 @@ export const EligibleServicesBooking: React.FC<EligibleServicesBookingProps> = (
           </div>
 
           {/* Location Radio / Filter */}
-          <div className="flex items-center gap-1 bg-slate-800 p-1 rounded-xl text-xs">
+          <div className="flex flex-wrap items-center gap-1 bg-slate-800 p-1 rounded-xl text-xs">
             <span className="text-slate-400 text-[11px] px-2 font-medium">Branch:</span>
             {(['all', 'Central', 'East', 'Rural'] as const).map(loc => (
               <button
                 key={loc}
                 onClick={() => setLocationFilter(loc)}
-                className={`px-2.5 py-1 rounded-lg font-semibold transition-all cursor-pointer ${
+                className={`px-2.5 py-1 min-h-[36px] sm:min-h-0 rounded-lg font-semibold transition-all cursor-pointer ${
                   locationFilter === loc
                     ? 'bg-teal-600 text-white shadow-xs'
                     : 'text-slate-300 hover:text-white hover:bg-slate-700'
@@ -783,14 +783,14 @@ export const EligibleServicesBooking: React.FC<EligibleServicesBookingProps> = (
               </div>
 
               {/* Date & Time Slot */}
-              <div className="grid grid-cols-2 gap-3">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
                   <label className="block text-slate-600 font-semibold mb-1">Appointment Date:</label>
                   <input
                     type="date"
                     value={bookingDate}
                     onChange={(e) => setBookingDate(e.target.value)}
-                    className="w-full px-3 py-2 rounded-lg border border-slate-300 font-medium"
+                    className="w-full min-h-[44px] px-3 py-2 rounded-lg border border-slate-300 font-medium"
                     required
                   />
                 </div>
@@ -799,7 +799,7 @@ export const EligibleServicesBooking: React.FC<EligibleServicesBookingProps> = (
                   <select
                     value={bookingTimeSlot}
                     onChange={(e) => setBookingTimeSlot(e.target.value)}
-                    className="w-full px-3 py-2 rounded-lg border border-slate-300 font-medium"
+                    className="w-full min-h-[44px] px-3 py-2 rounded-lg border border-slate-300 font-medium"
                   >
                     <option value="Morning (8:00 AM - 11:00 AM)">Morning (8:00 AM - 11:00 AM)</option>
                     <option value="Midday (11:00 AM - 2:00 PM)">Midday (11:00 AM - 2:00 PM)</option>
@@ -810,19 +810,19 @@ export const EligibleServicesBooking: React.FC<EligibleServicesBookingProps> = (
               </div>
 
               {/* Action Buttons */}
-              <div className="flex items-center justify-end gap-3 pt-3 border-t border-slate-100">
+              <div className="flex flex-col-reverse sm:flex-row items-stretch sm:items-center justify-end gap-3 pt-3 border-t border-slate-100">
                 <button
                   type="button"
                   onClick={() => setBookingItem(null)}
-                  className="px-4 py-2 text-slate-600 hover:text-slate-900 font-semibold cursor-pointer"
+                  className="min-h-[44px] px-4 py-2 text-slate-600 hover:text-slate-900 font-semibold cursor-pointer text-center"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
-                  className="px-5 py-2.5 bg-teal-600 hover:bg-teal-700 text-white font-bold rounded-xl shadow-sm flex items-center gap-1.5 cursor-pointer"
+                  className="min-h-[44px] px-5 py-2.5 bg-teal-600 hover:bg-teal-700 text-white font-bold rounded-xl shadow-sm flex items-center justify-center gap-1.5 cursor-pointer"
                 >
-                  <CheckCircle2 className="w-4 h-4" />
+                  <CheckCircle2 className="w-4 h-4 shrink-0" />
                   <span>Confirm Booking & Generate Voucher</span>
                 </button>
               </div>
@@ -872,7 +872,7 @@ export const EligibleServicesBooking: React.FC<EligibleServicesBookingProps> = (
                 </div>
               </div>
 
-              <div className="grid grid-cols-2 gap-3 text-xs">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
                 <div>
                   <span className="text-[10px] text-slate-500 block">Patient Name:</span>
                   <strong className="text-slate-900 text-sm">{confirmedBooking.patientName}</strong>
@@ -909,17 +909,17 @@ export const EligibleServicesBooking: React.FC<EligibleServicesBookingProps> = (
             </div>
 
             {/* Print & Dismiss */}
-            <div className="flex items-center justify-between pt-2">
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-2.5 pt-2">
               <button
                 onClick={() => window.print()}
-                className="px-4 py-2 bg-slate-900 hover:bg-slate-800 text-white rounded-xl text-xs font-bold flex items-center gap-1.5 cursor-pointer"
+                className="min-h-[44px] px-4 py-2 bg-slate-900 hover:bg-slate-800 text-white rounded-xl text-xs font-bold flex items-center justify-center gap-1.5 cursor-pointer"
               >
                 <Printer className="w-3.5 h-3.5 text-teal-400" />
                 <span>Print Pass Voucher</span>
               </button>
               <button
                 onClick={() => setConfirmedBooking(null)}
-                className="px-4 py-2 bg-teal-600 hover:bg-teal-700 text-white rounded-xl text-xs font-bold cursor-pointer"
+                className="min-h-[44px] px-4 py-2 bg-teal-600 hover:bg-teal-700 text-white rounded-xl text-xs font-bold cursor-pointer text-center flex items-center justify-center"
               >
                 Done
               </button>

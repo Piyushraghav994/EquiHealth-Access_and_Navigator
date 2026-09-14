@@ -181,7 +181,7 @@ export const HospitalCard: React.FC<HospitalCardProps> = ({
           </div>
 
           {/* Card Action Buttons: Removed "Get Directions", Kept "View on Map", Added "View Details" */}
-          <div className="flex flex-wrap items-center gap-3 pt-3 border-t border-slate-100">
+          <div className="flex flex-col min-[420px]:flex-row flex-wrap items-stretch min-[420px]:items-center gap-2.5 sm:gap-3 pt-3 border-t border-slate-100">
             <button
               type="button"
               onClick={(e) => {
@@ -192,7 +192,7 @@ export const HospitalCard: React.FC<HospitalCardProps> = ({
                   onSelectHospital(id);
                 }
               }}
-              className="px-4 py-2 text-xs font-semibold rounded-lg border border-slate-300 hover:bg-slate-50 text-slate-700 transition-colors cursor-pointer"
+              className="min-h-[44px] px-4 py-2 text-xs font-semibold rounded-lg border border-slate-300 hover:bg-slate-50 text-slate-700 transition-colors cursor-pointer text-center flex items-center justify-center"
             >
               View on Map
             </button>
@@ -205,7 +205,7 @@ export const HospitalCard: React.FC<HospitalCardProps> = ({
                   onSelectHospital(id);
                 }
               }}
-              className="inline-flex items-center gap-1.5 px-4 py-2 text-xs font-bold rounded-lg bg-teal-800 hover:bg-teal-900 text-white shadow-xs transition-colors cursor-pointer"
+              className="min-h-[44px] inline-flex items-center justify-center gap-1.5 px-4 py-2 text-xs font-bold rounded-lg bg-teal-800 hover:bg-teal-900 text-white shadow-xs transition-colors cursor-pointer"
             >
               <span>View Full Details</span>
               <ChevronRight className="w-3.5 h-3.5" />

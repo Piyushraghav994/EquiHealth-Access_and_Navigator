@@ -31,9 +31,9 @@ export const HospitalAppointment: React.FC<HospitalAppointmentProps> = ({
             ? 'border-teal-200 bg-teal-50/40' 
             : 'border-slate-200 bg-slate-50/60'
         }`}>
-          <div className="flex items-center justify-between">
+          <div className="flex flex-wrap items-start sm:items-center justify-between gap-2">
             <div className="flex items-center gap-2.5">
-              <div className={`w-9 h-9 rounded-xl flex items-center justify-center ${
+              <div className={`w-9 h-9 rounded-xl flex items-center justify-center shrink-0 ${
                 onlineAvailable ? 'bg-teal-600 text-white' : 'bg-slate-200 text-slate-500'
               }`}>
                 <Calendar className="w-5 h-5" />
@@ -45,12 +45,12 @@ export const HospitalAppointment: React.FC<HospitalAppointmentProps> = ({
             </div>
 
             {onlineAvailable ? (
-              <span className="inline-flex items-center gap-1 text-[11px] font-bold text-emerald-700 bg-emerald-100 px-2.5 py-1 rounded-full">
+              <span className="inline-flex items-center gap-1 text-[11px] font-bold text-emerald-700 bg-emerald-100 px-2.5 py-1 rounded-full shrink-0">
                 <CheckCircle2 className="w-3.5 h-3.5" />
                 Available
               </span>
             ) : (
-              <span className="inline-flex items-center gap-1 text-[11px] font-semibold text-slate-600 bg-slate-200 px-2.5 py-1 rounded-full">
+              <span className="inline-flex items-center gap-1 text-[11px] font-semibold text-slate-600 bg-slate-200 px-2.5 py-1 rounded-full shrink-0">
                 <XCircle className="w-3.5 h-3.5" />
                 Not Available
               </span>
@@ -80,7 +80,7 @@ export const HospitalAppointment: React.FC<HospitalAppointmentProps> = ({
                   href={portalUrl || 'https://ors.gov.in'}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2 w-full py-2.5 px-4 rounded-xl bg-teal-800 hover:bg-teal-900 text-white text-xs sm:text-sm font-bold shadow-xs transition-colors"
+                  className="min-h-[44px] inline-flex items-center justify-center gap-2 w-full py-2.5 px-4 rounded-xl bg-teal-800 hover:bg-teal-900 text-white text-xs sm:text-sm font-bold shadow-xs transition-colors"
                 >
                   <span>Book Appointment</span>
                   <ExternalLink className="w-4 h-4" />
@@ -105,9 +105,9 @@ export const HospitalAppointment: React.FC<HospitalAppointmentProps> = ({
             ? 'border-emerald-200 bg-emerald-50/40' 
             : 'border-slate-200 bg-slate-50'
         }`}>
-          <div className="flex items-center justify-between">
+          <div className="flex flex-wrap items-start sm:items-center justify-between gap-2">
             <div className="flex items-center gap-2.5">
-              <div className="w-9 h-9 rounded-xl bg-emerald-600 text-white flex items-center justify-center">
+              <div className="w-9 h-9 rounded-xl bg-emerald-600 text-white flex items-center justify-center shrink-0">
                 <CheckCircle2 className="w-5 h-5" />
               </div>
               <div>
@@ -116,7 +116,7 @@ export const HospitalAppointment: React.FC<HospitalAppointmentProps> = ({
               </div>
             </div>
 
-            <span className="inline-flex items-center gap-1 text-[11px] font-bold text-emerald-800 bg-emerald-100 px-2.5 py-1 rounded-full">
+            <span className="inline-flex items-center gap-1 text-[11px] font-bold text-emerald-800 bg-emerald-100 px-2.5 py-1 rounded-full shrink-0">
               Walk-in Supported
             </span>
           </div>

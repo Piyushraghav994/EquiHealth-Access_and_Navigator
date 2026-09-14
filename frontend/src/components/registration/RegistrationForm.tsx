@@ -275,8 +275,8 @@ export const RegistrationForm: React.FC<RegistrationFormProps> = ({
   return (
     <div className="max-w-3xl mx-auto px-4 sm:px-6 py-8">
       {/* Top Demo Fill Bar & Security Badge */}
-      <div className="flex items-center justify-between gap-2 mb-6 text-xs text-slate-500">
-        <div className="flex items-center gap-1.5 text-teal-800">
+      <div className="flex flex-col min-[440px]:flex-row items-start min-[440px]:items-center justify-between gap-2 mb-6 text-xs text-slate-500">
+        <div className="flex items-center gap-1.5 text-teal-800 shrink-0">
           <ShieldCheck className="w-4 h-4 text-teal-700" />
           <span className="font-medium">Encrypted & Confidential Registration</span>
         </div>
@@ -285,13 +285,13 @@ export const RegistrationForm: React.FC<RegistrationFormProps> = ({
           onClick={handlePrefillDemo}
           className="text-teal-800 hover:text-teal-900 font-medium hover:underline flex items-center gap-1 cursor-pointer"
         >
-          <Sparkles className="w-3.5 h-3.5" />
+          <Sparkles className="w-3.5 h-3.5 shrink-0" />
           <span>Quick fill sample data</span>
         </button>
       </div>
 
       {/* Main Card */}
-      <div className="bg-white rounded-2xl border border-slate-200 shadow-xs p-6 sm:p-8">
+      <div className="bg-white rounded-2xl border border-slate-200 shadow-xs p-4 sm:p-8">
         {/* Progress Stepper Indicator: 1 ─── 2 ─── 3 ─── 4 ─── Review */}
         <RegistrationStepper
           steps={STEPS}
@@ -357,11 +357,11 @@ export const RegistrationForm: React.FC<RegistrationFormProps> = ({
         </div>
 
         {/* Navigation Action Buttons */}
-        <div className="flex items-center justify-between border-t border-slate-100 pt-5">
+        <div className="flex items-center justify-between border-t border-slate-100 pt-5 gap-3">
           <button
             type="button"
             onClick={handleBack}
-            className="px-5 py-2.5 bg-white border border-slate-300 hover:bg-slate-50 text-slate-700 text-sm font-semibold rounded-xl transition-colors cursor-pointer flex items-center justify-center gap-2"
+            className="min-h-[44px] px-5 py-2.5 bg-white border border-slate-300 hover:bg-slate-50 text-slate-700 text-sm font-semibold rounded-xl transition-colors cursor-pointer flex items-center justify-center gap-2"
           >
             <ArrowLeft className="w-4 h-4" />
             <span>{currentStepIndex === 0 ? 'Home' : 'Back'}</span>
@@ -371,7 +371,7 @@ export const RegistrationForm: React.FC<RegistrationFormProps> = ({
             <button
               type="button"
               onClick={handleNext}
-              className="px-6 py-2.5 bg-teal-800 hover:bg-teal-900 text-white text-sm font-semibold rounded-xl shadow-xs transition-colors cursor-pointer flex items-center justify-center gap-2"
+              className="min-h-[44px] px-6 py-2.5 bg-teal-800 hover:bg-teal-900 text-white text-sm font-semibold rounded-xl shadow-xs transition-colors cursor-pointer flex items-center justify-center gap-2"
             >
               <span>Next</span>
               <ArrowRight className="w-4 h-4" />
@@ -381,12 +381,12 @@ export const RegistrationForm: React.FC<RegistrationFormProps> = ({
               type="button"
               disabled={isSubmitting}
               onClick={handleSubmit}
-              className="px-7 py-2.5 bg-teal-800 hover:bg-teal-900 disabled:bg-teal-700 text-white text-sm font-semibold rounded-xl shadow-xs transition-colors cursor-pointer flex items-center justify-center gap-2"
+              className="min-h-[44px] px-5 sm:px-7 py-2.5 bg-teal-800 hover:bg-teal-900 disabled:bg-teal-700 text-white text-sm font-semibold rounded-xl shadow-xs transition-colors cursor-pointer flex items-center justify-center gap-2"
             >
               {isSubmitting ? (
                 <>
                   <Loader2 className="w-4 h-4 animate-spin" />
-                  <span>Submitting Registration...</span>
+                  <span>Submitting...</span>
                 </>
               ) : (
                 <>

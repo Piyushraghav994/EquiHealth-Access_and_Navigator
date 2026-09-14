@@ -112,8 +112,8 @@ export const LoginPage: React.FC<LoginPageProps> = ({
     <div className="max-w-md mx-auto px-4 py-10 sm:py-14 animate-in fade-in-50 duration-200">
       
       {/* Top Demo Fill / Trust Indicator */}
-      <div className="flex items-center justify-between gap-2 mb-6 text-xs text-slate-500">
-        <div className="flex items-center gap-1.5 text-teal-800">
+      <div className="flex flex-col min-[380px]:flex-row items-start min-[380px]:items-center justify-between gap-2 mb-6 text-xs text-slate-500">
+        <div className="flex items-center gap-1.5 text-teal-800 shrink-0">
           <ShieldCheck className="w-4 h-4 text-teal-700" />
           <span className="font-medium">EquiHealth Secure Access</span>
         </div>
@@ -124,14 +124,14 @@ export const LoginPage: React.FC<LoginPageProps> = ({
             onClick={handleQuickFillDemo}
             className="text-teal-800 hover:text-teal-900 font-medium hover:underline flex items-center gap-1 cursor-pointer"
           >
-            <Sparkles className="w-3.5 h-3.5" />
-            <span>Sample ID: EQH-7K42-91M8</span>
+            <Sparkles className="w-3.5 h-3.5 shrink-0" />
+            <span className="truncate">Sample ID: EQH-7K42-91M8</span>
           </button>
         )}
       </div>
 
       {/* Main Login Card */}
-      <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-6 sm:p-8">
+      <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-5 sm:p-8">
         
         {/* VIEW A: FORGOT ID RECOVERY VIEW */}
         {isRecovering ? (
@@ -270,7 +270,7 @@ export const LoginPage: React.FC<LoginPageProps> = ({
                     className="w-full pl-9 pr-3 py-2.5 bg-slate-50 border border-slate-300 rounded-xl text-sm font-mono text-slate-900 placeholder:text-slate-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-teal-700/20 focus:border-teal-700 transition-colors"
                   />
                 </div>
-                <div className="flex items-center justify-between text-[11px] text-slate-500 mt-1">
+                <div className="flex flex-col min-[340px]:flex-row items-start min-[340px]:items-center justify-between text-[11px] text-slate-500 mt-1 gap-1">
                   <span>Format: EQH-XXXX-XXXX</span>
                   <button
                     type="button"
@@ -317,7 +317,7 @@ export const LoginPage: React.FC<LoginPageProps> = ({
                 type="submit"
                 id="btn-login-submit"
                 disabled={isSubmitting}
-                className="w-full py-2.5 bg-teal-800 hover:bg-teal-900 disabled:bg-teal-700 text-white text-sm font-semibold rounded-xl shadow-xs transition-colors cursor-pointer flex items-center justify-center gap-2 mt-2"
+                className="w-full min-h-[44px] py-2.5 bg-teal-800 hover:bg-teal-900 disabled:bg-teal-700 text-white text-sm font-semibold rounded-xl shadow-xs transition-colors cursor-pointer flex items-center justify-center gap-2 mt-2"
               >
                 {isSubmitting ? (
                   <>

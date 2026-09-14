@@ -115,7 +115,7 @@ export const AssessmentResults: React.FC<AssessmentResultsProps> = ({
         <div className="flex flex-wrap items-center gap-2 w-full sm:w-auto">
           <button
             onClick={handleVoiceNarration}
-            className={`inline-flex items-center gap-1.5 px-3.5 py-2 text-xs font-bold rounded-xl border transition-all cursor-pointer ${
+            className={`min-h-[44px] inline-flex items-center gap-1.5 px-3.5 py-2 text-xs font-bold rounded-xl border transition-all cursor-pointer ${
               isSpeaking
                 ? 'bg-rose-50 text-rose-700 border-rose-300 animate-pulse'
                 : 'bg-teal-50 text-teal-800 border-teal-200 hover:bg-teal-100'
@@ -129,7 +129,7 @@ export const AssessmentResults: React.FC<AssessmentResultsProps> = ({
           {onOpenPatientPdf && (
             <button
               onClick={onOpenPatientPdf}
-              className="inline-flex items-center gap-1.5 px-3.5 py-2 text-xs font-bold rounded-xl bg-teal-50 text-teal-800 border border-teal-200 hover:bg-teal-100 shadow-sm transition-all cursor-pointer"
+              className="min-h-[44px] inline-flex items-center gap-1.5 px-3.5 py-2 text-xs font-bold rounded-xl bg-teal-50 text-teal-800 border border-teal-200 hover:bg-teal-100 shadow-sm transition-all cursor-pointer"
             >
               <FileText className="w-4 h-4 text-teal-600" />
               <span>{language === 'hi' ? 'रोगी विवरण (PDF)' : 'Patient Description (PDF)'}</span>
@@ -138,7 +138,7 @@ export const AssessmentResults: React.FC<AssessmentResultsProps> = ({
 
           <button
             onClick={onOpenPrintModal}
-            className="inline-flex items-center gap-1.5 px-3.5 py-2 text-xs font-bold rounded-xl bg-slate-900 text-white hover:bg-slate-800 shadow-sm transition-all cursor-pointer"
+            className="min-h-[44px] inline-flex items-center gap-1.5 px-3.5 py-2 text-xs font-bold rounded-xl bg-slate-900 text-white hover:bg-slate-800 shadow-sm transition-all cursor-pointer"
           >
             <Printer className="w-4 h-4 text-teal-400" />
             <span>{language === 'hi' ? 'प्रिंट / कार्ड डाउनलोड' : 'Print Health Pass'}</span>
@@ -146,7 +146,7 @@ export const AssessmentResults: React.FC<AssessmentResultsProps> = ({
 
           <button
             onClick={onModifyProfile}
-            className="inline-flex items-center gap-1.5 px-3 py-2 text-xs font-semibold rounded-xl bg-slate-100 text-slate-700 hover:bg-slate-200 transition-all cursor-pointer"
+            className="min-h-[44px] inline-flex items-center gap-1.5 px-3 py-2 text-xs font-semibold rounded-xl bg-slate-100 text-slate-700 hover:bg-slate-200 transition-all cursor-pointer"
           >
             <span>Edit Profile</span>
           </button>
@@ -646,12 +646,12 @@ export const AssessmentResults: React.FC<AssessmentResultsProps> = ({
             Present this card or reference number at Hospital Gate 1 Offline Desk for instant fee waiver.
           </p>
         </div>
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 w-full sm:w-auto">
           <button
             onClick={onOpenPrintModal}
-            className="px-4 py-2.5 bg-teal-500 hover:bg-teal-400 text-slate-950 font-bold text-xs rounded-xl shadow-md transition-colors cursor-pointer flex items-center gap-1.5"
+            className="w-full sm:w-auto min-h-[44px] justify-center px-4 py-2.5 bg-teal-500 hover:bg-teal-400 text-slate-950 font-bold text-xs rounded-xl shadow-md transition-colors cursor-pointer flex items-center gap-1.5"
           >
-            <Printer className="w-4 h-4" />
+            <Printer className="w-4 h-4 shrink-0" />
             <span>Print / Save Physical Card</span>
           </button>
         </div>

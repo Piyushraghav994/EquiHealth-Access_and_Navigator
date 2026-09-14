@@ -83,7 +83,7 @@ export const SelectField: React.FC<SelectFieldProps> = ({
           onClick={() => setIsOpen(!isOpen)}
           aria-haspopup="listbox"
           aria-expanded={isOpen}
-          className={`w-full px-3.5 py-2.5 rounded-xl border text-sm text-left flex items-center justify-between transition-all bg-white cursor-pointer
+          className={`w-full min-h-[44px] px-3.5 py-2.5 rounded-xl border text-sm text-left flex items-center justify-between transition-all bg-white cursor-pointer
             ${error 
               ? 'border-red-400 bg-red-50/20 text-slate-900 focus:ring-2 focus:ring-red-400' 
               : 'border-slate-300 text-slate-900 focus:ring-2 focus:ring-teal-600 hover:border-slate-400'
@@ -176,7 +176,7 @@ export const SelectField: React.FC<SelectFieldProps> = ({
           value={value}
           onChange={(e) => onChange(e.target.value)}
           disabled={disabled}
-          className={`w-full appearance-none px-3.5 py-2.5 rounded-xl border text-sm transition-all bg-white cursor-pointer pr-10
+          className={`w-full min-h-[44px] appearance-none px-3.5 py-2.5 rounded-xl border text-sm transition-all bg-white cursor-pointer pr-10
             ${error 
               ? 'border-red-400 bg-red-50/20 text-slate-900 focus:ring-2 focus:ring-red-400' 
               : 'border-slate-300 text-slate-900 focus:ring-2 focus:ring-teal-600 hover:border-slate-400'

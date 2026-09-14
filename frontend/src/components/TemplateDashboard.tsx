@@ -100,20 +100,22 @@ export const TemplateDashboard: React.FC<TemplateDashboardProps> = ({
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         
         {/* Left Sidebar Menu matching Screen 4 of Template.png */}
-        <aside className="lg:col-span-3 bg-white rounded-2xl p-4 border border-slate-200 shadow-xs space-y-2">
-          <div className="p-2 border-b border-slate-100 mb-2">
-            <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400 block">Navigation</span>
-            <strong className="text-xs font-bold text-slate-800 truncate block">
-              Patient: {user.fullName || 'Priya Sharma'}
-            </strong>
+        <aside className="lg:col-span-3 bg-white rounded-2xl p-4 border border-slate-200 shadow-xs space-y-3">
+          <div className="p-2 border-b border-slate-100 flex flex-col sm:flex-row lg:flex-col justify-between sm:items-center lg:items-start gap-1">
+            <div className="min-w-0">
+              <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400 block">Navigation</span>
+              <strong className="text-xs font-bold text-slate-800 truncate block">
+                Patient: {user.fullName || 'Priya Sharma'}
+              </strong>
+            </div>
             {user.equiHealthId && (
-              <span className="text-[11px] font-mono text-teal-800 font-semibold block mt-0.5">
+              <span className="text-[11px] font-mono text-teal-800 font-semibold block shrink-0">
                 ID: {user.equiHealthId}
               </span>
             )}
           </div>
 
-          <nav className="space-y-1">
+          <nav className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-1 gap-1.5 sm:gap-2">
             {navItems.map((item) => {
               const Icon = item.icon;
               const isActive = activeTab === item.id;
@@ -121,25 +123,27 @@ export const TemplateDashboard: React.FC<TemplateDashboardProps> = ({
               return (
                 <button
                   key={item.id}
+                  type="button"
                   onClick={() => {
                     setActiveTab(item.id as DashboardSidebarTab);
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                   }}
-                  className={`w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs font-semibold transition-all cursor-pointer text-left ${
+                  className={`w-full flex items-center gap-2 sm:gap-3 px-3 py-2.5 rounded-xl text-xs font-semibold transition-all cursor-pointer text-left ${
                     isActive
                       ? 'bg-teal-50 text-teal-900 border border-teal-200/80 shadow-xs font-bold'
-                      : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'
+                      : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50 border border-transparent'
                   }`}
                 >
-                  <Icon className={`w-4 h-4 ${isActive ? 'text-teal-800' : 'text-slate-400'}`} />
-                  <span>{item.label}</span>
+                  <Icon className={`w-4 h-4 shrink-0 ${isActive ? 'text-teal-800' : 'text-slate-400'}`} />
+                  <span className="truncate">{item.label}</span>
                 </button>
               );
             })}
           </nav>
 
-          <div className="pt-4 border-t border-slate-100">
+          <div className="pt-2 border-t border-slate-100">
             <button
+              type="button"
               onClick={onModifyIntake}
               className="w-full text-center py-2 text-xs font-medium text-teal-800 hover:text-teal-900 hover:bg-teal-50 rounded-lg transition-colors cursor-pointer"
             >
@@ -154,13 +158,14 @@ export const TemplateDashboard: React.FC<TemplateDashboardProps> = ({
           {/* VIEW 1: DASHBOARD / SCHEME ELIGIBILITY RESULT (Screen 4 of Template.png) */}
           {activeTab === 'dashboard' && (
             <div className="space-y-6">
-              <div className="flex items-center justify-between">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                 <h1 className="text-xl sm:text-2xl font-black text-slate-900 tracking-tight">
                   Scheme Eligibility Result
                 </h1>
                 <button
+                  type="button"
                   onClick={onOpenPdfModal}
-                  className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold text-teal-800 bg-white hover:bg-teal-50 rounded-lg border border-teal-300 shadow-xs transition-colors cursor-pointer"
+                  className="self-start sm:self-auto inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold text-teal-800 bg-white hover:bg-teal-50 rounded-lg border border-teal-300 shadow-xs transition-colors cursor-pointer"
                 >
                   <Download className="w-3.5 h-3.5 text-teal-600" />
                   <span>Download Plan (PDF)</span>
@@ -482,7 +487,7 @@ export const TemplateDashboard: React.FC<TemplateDashboardProps> = ({
                       </p>
                     </div>
 
-                    <div className="flex items-center gap-2">
+                    <div className="flex flex-wrap items-center gap-2">
                       <button
                         type="button"
                         onClick={() => setHospitalSubView('recommended')}

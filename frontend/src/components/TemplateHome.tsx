@@ -45,21 +45,23 @@ export const TemplateHome: React.FC<TemplateHomeProps> = ({
             </div>
 
             {/* CTA Buttons */}
-            <div className="flex flex-wrap items-center gap-3 pt-2">
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 pt-2">
               <button
+                type="button"
                 onClick={onGetStarted}
-                className="inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-lg bg-teal-800 hover:bg-teal-900 text-white font-bold text-sm shadow-md hover:shadow-lg transition-all cursor-pointer group"
+                className="inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-lg bg-teal-800 hover:bg-teal-900 text-white font-bold text-sm shadow-md hover:shadow-lg transition-all cursor-pointer group w-full sm:w-auto min-h-[44px]"
               >
                 <span>Get Started</span>
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </button>
 
               <button
+                type="button"
                 onClick={() => {
                   const el = document.getElementById('features-section');
                   if (el) el.scrollIntoView({ behavior: 'smooth' });
                 }}
-                className="inline-flex items-center justify-center px-6 py-3.5 rounded-lg bg-white border border-slate-300 hover:bg-slate-50 text-slate-700 font-semibold text-sm transition-colors cursor-pointer"
+                className="inline-flex items-center justify-center px-6 py-3.5 rounded-lg bg-white border border-slate-300 hover:bg-slate-50 text-slate-700 font-semibold text-sm transition-colors cursor-pointer w-full sm:w-auto min-h-[44px]"
               >
                 Learn More
               </button>
@@ -67,50 +69,50 @@ export const TemplateHome: React.FC<TemplateHomeProps> = ({
           </div>
 
           {/* Right Hero Visual Illustration matching Template.png */}
-          <div className="lg:col-span-6 flex justify-center">
+          <div className="lg:col-span-6 flex justify-center w-full">
             <div className="relative w-full max-w-lg">
               {/* Illustration Frame */}
-              <div className="relative rounded-3xl overflow-hidden bg-gradient-to-b from-teal-50/60 to-emerald-50/40 p-6 border border-teal-100 shadow-sm">
+              <div className="relative rounded-3xl overflow-hidden bg-gradient-to-b from-teal-50/60 to-emerald-50/40 p-4 sm:p-6 border border-teal-100 shadow-sm">
                 
                 {/* Visual Representation of Indian Healthcare & Family Illustration */}
-                <div className="relative aspect-4/3 rounded-2xl bg-white border border-teal-100 p-6 flex flex-col justify-between overflow-hidden shadow-xs">
+                <div className="relative min-h-[280px] sm:aspect-4/3 rounded-2xl bg-white border border-teal-100 p-4 sm:p-6 flex flex-col justify-between overflow-hidden shadow-xs">
                   
                   {/* Background Hospital Building Outline */}
                   <div className="absolute top-3 right-4 opacity-15 pointer-events-none">
-                    <Building2 className="w-36 h-36 text-teal-800" />
+                    <Building2 className="w-28 h-28 sm:w-36 sm:h-36 text-teal-800" />
                   </div>
 
                   {/* Better Health Brighter Tomorrow Badge */}
                   <div className="self-end z-10">
-                    <div className="px-3.5 py-1.5 rounded-lg bg-white/95 border border-teal-200 shadow-xs flex items-center gap-1.5 text-[11px] font-bold text-teal-900 uppercase tracking-wide">
-                      <span className="w-2 h-2 rounded-full bg-teal-600 animate-pulse" />
-                      BETTER HEALTH BRIGHTER TOMORROW
+                    <div className="px-2.5 sm:px-3.5 py-1 sm:py-1.5 rounded-lg bg-white/95 border border-teal-200 shadow-xs flex items-center gap-1.5 text-[10px] sm:text-[11px] font-bold text-teal-900 uppercase tracking-wide">
+                      <span className="w-2 h-2 rounded-full bg-teal-600 animate-pulse shrink-0" />
+                      <span className="truncate">BETTER HEALTH BRIGHTER TOMORROW</span>
                     </div>
                   </div>
 
                   {/* Characters Silhouette & Stylized Healthcare Art */}
-                  <div className="relative z-10 flex items-end justify-center gap-4 pt-6 pb-2">
+                  <div className="relative z-10 flex items-end justify-center gap-2 sm:gap-4 pt-4 sm:pt-6 pb-2">
                     
                     {/* Doctor Card Profile */}
-                    <div className="bg-white rounded-2xl p-4 shadow-md border border-slate-200 flex flex-col items-center text-center w-36 sm:w-40 transform -rotate-1 hover:rotate-0 transition-transform">
-                      <div className="w-16 h-16 rounded-full bg-teal-100 text-teal-800 flex items-center justify-center mb-2 shadow-inner">
-                        <Stethoscope className="w-8 h-8 stroke-[2.2]" />
+                    <div className="bg-white rounded-2xl p-2.5 sm:p-4 shadow-md border border-slate-200 flex flex-col items-center text-center w-28 min-[380px]:w-36 sm:w-40 transform -rotate-1 hover:rotate-0 transition-transform">
+                      <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-teal-100 text-teal-800 flex items-center justify-center mb-2 shadow-inner shrink-0">
+                        <Stethoscope className="w-6 h-6 sm:w-8 sm:h-8 stroke-[2.2]" />
                       </div>
-                      <span className="text-xs font-bold text-slate-900 leading-tight">Govt Medical Officer</span>
-                      <span className="text-[10px] text-teal-700 font-semibold mt-0.5">Rural Health Clinic</span>
-                      <div className="mt-2 text-[10px] px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200 font-medium">
+                      <span className="text-[11px] sm:text-xs font-bold text-slate-900 leading-tight">Govt Medical Officer</span>
+                      <span className="text-[9px] sm:text-[10px] text-teal-700 font-semibold mt-0.5">Rural Clinic</span>
+                      <div className="mt-1.5 sm:mt-2 text-[9px] sm:text-[10px] px-1.5 sm:px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200 font-medium">
                         Verified Doctor
                       </div>
                     </div>
 
                     {/* Patient & Family Card Profile */}
-                    <div className="bg-white rounded-2xl p-4 shadow-md border border-slate-200 flex flex-col items-center text-center w-40 sm:w-44 transform rotate-1 hover:rotate-0 transition-transform">
-                      <div className="w-16 h-16 rounded-full bg-amber-100 text-amber-800 flex items-center justify-center mb-2 shadow-inner">
-                        <Users className="w-8 h-8 stroke-[2.2]" />
+                    <div className="bg-white rounded-2xl p-2.5 sm:p-4 shadow-md border border-slate-200 flex flex-col items-center text-center w-32 min-[380px]:w-40 sm:w-44 transform rotate-1 hover:rotate-0 transition-transform">
+                      <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-amber-100 text-amber-800 flex items-center justify-center mb-2 shadow-inner shrink-0">
+                        <Users className="w-6 h-6 sm:w-8 sm:h-8 stroke-[2.2]" />
                       </div>
-                      <span className="text-xs font-bold text-slate-900 leading-tight">Patient & Family</span>
-                      <span className="text-[10px] text-slate-500 font-medium mt-0.5">Ayushman Bharat Eligible</span>
-                      <div className="mt-2 text-[10px] px-2 py-0.5 rounded-full bg-teal-50 text-teal-800 border border-teal-200 font-bold">
+                      <span className="text-[11px] sm:text-xs font-bold text-slate-900 leading-tight">Patient & Family</span>
+                      <span className="text-[9px] sm:text-[10px] text-slate-500 font-medium mt-0.5">PM-JAY Eligible</span>
+                      <div className="mt-1.5 sm:mt-2 text-[9px] sm:text-[10px] px-1.5 sm:px-2 py-0.5 rounded-full bg-teal-50 text-teal-800 border border-teal-200 font-bold">
                         100% Cashless Care
                       </div>
                     </div>
@@ -118,12 +120,12 @@ export const TemplateHome: React.FC<TemplateHomeProps> = ({
                   </div>
 
                   {/* Trust Footer inside graphic */}
-                  <div className="relative z-10 bg-slate-50 rounded-xl p-2.5 border border-slate-200 flex items-center justify-between text-[11px] text-slate-600">
+                  <div className="relative z-10 bg-slate-50 rounded-xl p-2 sm:p-2.5 border border-slate-200 flex flex-wrap sm:flex-nowrap items-center justify-between text-[10px] sm:text-[11px] text-slate-600 gap-1">
                     <div className="flex items-center gap-1.5 font-semibold text-slate-800">
-                      <CheckCircle2 className="w-4 h-4 text-emerald-600" />
-                      <span>Empaneled Satellite Hospitals</span>
+                      <CheckCircle2 className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-emerald-600 shrink-0" />
+                      <span className="truncate">Empaneled Hospitals</span>
                     </div>
-                    <span className="text-teal-700 font-bold">Zero Paperwork</span>
+                    <span className="text-teal-700 font-bold shrink-0">Zero Paperwork</span>
                   </div>
 
                 </div>

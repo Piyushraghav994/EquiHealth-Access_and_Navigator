@@ -48,13 +48,13 @@ export const HospitalTimings: React.FC<HospitalTimingsProps> = ({ timings }) => 
           return (
             <div
               key={key}
-              className={`flex items-center justify-between px-4 py-2.5 text-xs sm:text-sm ${
+              className={`flex flex-col sm:flex-row sm:items-center justify-between gap-1 px-4 py-2.5 text-xs sm:text-sm ${
                 isSunday ? 'bg-amber-50/50' : 'hover:bg-slate-50'
               }`}
             >
               <span className="font-semibold text-slate-700">{label}</span>
               <div className="flex items-center gap-1.5 text-slate-900 font-medium">
-                <Clock className="w-3.5 h-3.5 text-slate-400" />
+                <Clock className="w-3.5 h-3.5 text-slate-400 shrink-0" />
                 <span>{hours}</span>
               </div>
             </div>
@@ -63,7 +63,7 @@ export const HospitalTimings: React.FC<HospitalTimingsProps> = ({ timings }) => 
 
         {/* OPD Timings note if specified */}
         {timings.opdTimings && (
-          <div className="flex items-center justify-between px-4 py-2.5 text-xs sm:text-sm bg-teal-50 text-teal-900">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 px-4 py-2.5 text-xs sm:text-sm bg-teal-50 text-teal-900">
             <span className="font-bold">OPD Consultation Window</span>
             <span className="font-semibold">{timings.opdTimings}</span>
           </div>

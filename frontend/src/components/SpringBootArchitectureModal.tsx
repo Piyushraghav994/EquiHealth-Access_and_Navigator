@@ -26,6 +26,7 @@ export const SpringBootArchitectureModal: React.FC<SpringBootArchitectureModalPr
   const [testResult, setTestResult] = useState<{ success: boolean; message: string; latency?: number } | null>(null);
   const [isTesting, setIsTesting] = useState(false);
   const [selectedEndpoint, setSelectedEndpoint] = useState(SPRING_BOOT_ENDPOINTS[1]);
+  const [savedNotification, setSavedNotification] = useState(false);
 
   const handleTestConnection = async () => {
     setIsTesting(true);
@@ -42,7 +43,8 @@ export const SpringBootArchitectureModal: React.FC<SpringBootArchitectureModalPr
 
   const handleSave = () => {
     saveBackendConfig(config);
-    alert('Backend configuration saved!');
+    setSavedNotification(true);
+    setTimeout(() => setSavedNotification(false), 3000);
   };
 
   return (
@@ -94,24 +96,40 @@ export const SpringBootArchitectureModal: React.FC<SpringBootArchitectureModalPr
             <label className="block text-slate-700 font-semibold mb-1">
               Spring Boot API Base URL:
             </label>
-            <div className="flex gap-2">
+            <div className="flex flex-col sm:flex-row gap-2">
               <input
                 type="text"
                 value={config.baseUrl}
                 onChange={(e) => setConfig({ ...config, baseUrl: e.target.value })}
-                className="flex-1 px-3 py-2 text-xs rounded-lg border border-slate-300 font-mono"
+                className="flex-1 min-h-[44px] px-3 py-2 text-xs rounded-lg border border-slate-300 font-mono"
                 placeholder="http://localhost:8080"
               />
-              <button
-                type="button"
-                onClick={handleTestConnection}
-                disabled={isTesting}
-                className="px-3.5 py-2 bg-slate-900 text-white rounded-lg font-bold hover:bg-slate-800 flex items-center gap-1.5 transition-colors cursor-pointer shrink-0"
-              >
-                {isTesting ? <RefreshCw className="w-3.5 h-3.5 animate-spin" /> : <Play className="w-3.5 h-3.5" />}
-                <span>Test /actuator/health</span>
-              </button>
+              <div className="flex items-center gap-2">
+                <button
+                  type="button"
+                  onClick={handleTestConnection}
+                  disabled={isTesting}
+                  className="min-h-[44px] px-3.5 py-2 bg-slate-900 text-white rounded-lg font-bold hover:bg-slate-800 flex items-center justify-center gap-1.5 transition-colors cursor-pointer shrink-0 flex-1 sm:flex-initial"
+                >
+                  {isTesting ? <RefreshCw className="w-3.5 h-3.5 animate-spin" /> : <Play className="w-3.5 h-3.5" />}
+                  <span>Test Health</span>
+                </button>
+                <button
+                  type="button"
+                  onClick={handleSave}
+                  className="min-h-[44px] px-3.5 py-2 bg-emerald-700 text-white rounded-lg font-bold hover:bg-emerald-800 flex items-center justify-center gap-1.5 transition-colors cursor-pointer shrink-0"
+                >
+                  <CheckCircle2 className="w-3.5 h-3.5" />
+                  <span>Save URL</span>
+                </button>
+              </div>
             </div>
+            {savedNotification && (
+              <p className="text-[11px] text-emerald-700 font-semibold mt-1 animate-fade-in flex items-center gap-1">
+                <CheckCircle2 className="w-3.5 h-3.5" />
+                <span>Configuration saved successfully!</span>
+              </p>
+            )}
           </div>
 
           <div>

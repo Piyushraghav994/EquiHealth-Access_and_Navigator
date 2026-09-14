@@ -198,9 +198,11 @@ export const TemplateNavbar: React.FC<TemplateNavbarProps> = ({
 
           {/* Mobile hamburger */}
           <button
+            type="button"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="md:hidden p-2 text-slate-600 hover:text-slate-900 rounded-lg hover:bg-slate-100"
+            className="md:hidden min-h-[44px] min-w-[44px] flex items-center justify-center p-2 text-slate-600 hover:text-slate-900 rounded-lg hover:bg-slate-100 transition-colors"
             aria-label="Toggle Menu"
+            aria-expanded={mobileMenuOpen}
           >
             {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
@@ -209,46 +211,51 @@ export const TemplateNavbar: React.FC<TemplateNavbarProps> = ({
 
       {/* Mobile Menu Dropdown */}
       {mobileMenuOpen && (
-        <div className="md:hidden border-t border-slate-200 bg-white px-4 py-3 space-y-2 shadow-lg">
+        <div className="md:hidden border-t border-slate-200 bg-white px-4 py-3 space-y-2 shadow-lg max-h-[calc(100vh-4rem)] overflow-y-auto">
           <button
+            type="button"
             onClick={() => handleNavClick('home')}
-            className="block w-full text-left py-2 text-sm font-medium text-slate-700"
+            className="block w-full text-left py-2.5 text-sm font-medium text-slate-700 hover:text-teal-800 transition-colors"
           >
             Home
           </button>
           
           {isAuthenticated ? (
             <>
-              <div className="py-2 px-3 bg-slate-50 border border-slate-200 rounded-lg flex items-center justify-between text-xs">
-                <div>
-                  <span className="font-semibold text-slate-800 block">{userName}</span>
+              <div className="py-2.5 px-3 bg-slate-50 border border-slate-200 rounded-lg flex items-center justify-between text-xs gap-2">
+                <div className="min-w-0 flex-1">
+                  <span className="font-semibold text-slate-800 block truncate">{userName}</span>
                   {equiHealthId && (
-                    <span className="font-mono text-teal-800 font-semibold">{equiHealthId}</span>
+                    <span className="font-mono text-teal-800 font-semibold block truncate">{equiHealthId}</span>
                   )}
                 </div>
-                <span className="px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 text-[10px] font-medium">Logged In</span>
+                <span className="px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 text-[10px] font-medium shrink-0">Logged In</span>
               </div>
               <button
+                type="button"
                 onClick={() => handleNavClick('dashboard', 'dashboard')}
-                className="block w-full text-left py-2 text-sm font-medium text-slate-700"
+                className="block w-full text-left py-2.5 text-sm font-medium text-slate-700 hover:text-teal-800 transition-colors"
               >
                 Dashboard
               </button>
               <button
+                type="button"
                 onClick={() => handleNavClick('dashboard', 'my-plan')}
-                className="block w-full text-left py-2 text-sm font-medium text-slate-700"
+                className="block w-full text-left py-2.5 text-sm font-medium text-slate-700 hover:text-teal-800 transition-colors"
               >
                 My Plan
               </button>
               <button
+                type="button"
                 onClick={() => handleNavClick('dashboard', 'schemes')}
-                className="block w-full text-left py-2 text-sm font-medium text-slate-700"
+                className="block w-full text-left py-2.5 text-sm font-medium text-slate-700 hover:text-teal-800 transition-colors"
               >
                 Schemes
               </button>
               <button
+                type="button"
                 onClick={() => handleNavClick('dashboard', 'nearby-hospitals')}
-                className="block w-full text-left py-2 text-sm font-medium text-slate-700"
+                className="block w-full text-left py-2.5 text-sm font-medium text-slate-700 hover:text-teal-800 transition-colors"
               >
                 Nearby Hospitals
               </button>
@@ -259,46 +266,51 @@ export const TemplateNavbar: React.FC<TemplateNavbarProps> = ({
                     if (onLogout) onLogout();
                   }}
                   variant="button"
-                  className="w-full"
+                  className="w-full min-h-[44px]"
                 />
               </div>
             </>
           ) : (
             <>
               <button
+                type="button"
                 onClick={() => handleNavClick('dashboard', 'schemes')}
-                className="block w-full text-left py-2 text-sm font-medium text-slate-700"
+                className="block w-full text-left py-2.5 text-sm font-medium text-slate-700 hover:text-teal-800 transition-colors"
               >
                 Schemes
               </button>
               <button
+                type="button"
                 onClick={() => handleNavClick('dashboard', 'nearby-hospitals')}
-                className="block w-full text-left py-2 text-sm font-medium text-slate-700"
+                className="block w-full text-left py-2.5 text-sm font-medium text-slate-700 hover:text-teal-800 transition-colors"
               >
                 Nearby Hospitals
               </button>
               <button
+                type="button"
                 onClick={() => handleNavClick('dashboard', 'support')}
-                className="block w-full text-left py-2 text-sm font-medium text-slate-700"
+                className="block w-full text-left py-2.5 text-sm font-medium text-slate-700 hover:text-teal-800 transition-colors"
               >
                 Need Help? / Contact
               </button>
-              <div className="pt-2 border-t border-slate-200 flex flex-col gap-2">
+              <div className="pt-2 border-t border-slate-200 flex flex-col gap-2.5">
                 <button
+                  type="button"
                   onClick={() => {
                     if (onOpenLogin) onOpenLogin();
                     else handleNavClick('login');
                   }}
-                  className="w-full py-2 text-center text-sm font-medium text-slate-700 border border-slate-300 rounded-lg hover:bg-slate-50"
+                  className="w-full min-h-[44px] py-2.5 text-center text-sm font-medium text-slate-700 border border-slate-300 rounded-lg hover:bg-slate-50 transition-colors"
                 >
                   Login with EquiHealth ID
                 </button>
                 <button
+                  type="button"
                   onClick={() => {
                     if (onOpenIntake) onOpenIntake();
                     else handleNavClick('intake');
                   }}
-                  className="w-full py-2 text-center text-sm font-semibold text-white bg-teal-800 rounded-lg"
+                  className="w-full min-h-[44px] py-2.5 text-center text-sm font-semibold text-white bg-teal-800 hover:bg-teal-900 rounded-lg transition-colors"
                 >
                   Register (Sign Up)
                 </button>

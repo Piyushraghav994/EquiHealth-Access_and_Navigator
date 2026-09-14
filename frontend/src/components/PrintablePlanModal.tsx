@@ -25,21 +25,24 @@ export const PrintablePlanModal: React.FC<PrintablePlanModalProps> = ({
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/70 backdrop-blur-sm animate-fade-in overflow-y-auto">
       <div className="bg-white rounded-2xl max-w-2xl w-full p-6 sm:p-8 shadow-2xl border border-slate-200 relative my-8">
         {/* Close Button & Print Action */}
-        <div className="flex items-center justify-between pb-4 border-b border-slate-200 mb-6 print:hidden">
+        <div className="flex flex-wrap sm:flex-nowrap items-center justify-between gap-3 pb-4 border-b border-slate-200 mb-6 print:hidden">
           <span className="text-xs font-bold uppercase tracking-wider text-teal-800 bg-teal-50 px-2.5 py-1 rounded">
-            Physical Health Pass & Offline Registration Voucher
+            Physical Health Pass & Voucher
           </span>
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 w-full sm:w-auto justify-end">
             <button
+              type="button"
               onClick={handlePrint}
-              className="px-4 py-1.5 bg-teal-600 hover:bg-teal-700 text-white text-xs font-bold rounded-lg shadow-sm flex items-center gap-1.5 cursor-pointer"
+              className="min-h-[44px] px-4 py-2 bg-teal-600 hover:bg-teal-700 text-white text-xs font-bold rounded-xl shadow-xs flex items-center justify-center gap-1.5 cursor-pointer flex-1 sm:flex-initial"
             >
               <Printer className="w-3.5 h-3.5" />
               <span>Print / Save as PDF</span>
             </button>
             <button
+              type="button"
               onClick={onClose}
-              className="text-slate-400 hover:text-slate-600 p-1.5 rounded-full hover:bg-slate-100 cursor-pointer"
+              className="min-h-[44px] min-w-[44px] text-slate-400 hover:text-slate-600 rounded-xl hover:bg-slate-100 cursor-pointer flex items-center justify-center"
+              aria-label="Close pass modal"
             >
               <X className="w-5 h-5" />
             </button>
@@ -47,15 +50,15 @@ export const PrintablePlanModal: React.FC<PrintablePlanModalProps> = ({
         </div>
 
         {/* The Printable Pass Content */}
-        <div className="space-y-6 border-2 border-slate-900 rounded-xl p-6 bg-white text-slate-900">
+        <div className="space-y-6 border-2 border-slate-900 rounded-xl p-4 sm:p-6 bg-white text-slate-900">
           {/* Header of Pass */}
-          <div className="flex items-start justify-between border-b-2 border-slate-900 pb-4">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between border-b-2 border-slate-900 pb-4 gap-3">
             <div className="flex items-center gap-3">
-              <div className="w-12 h-12 rounded-lg bg-slate-900 text-white flex items-center justify-center font-bold">
+              <div className="w-12 h-12 rounded-lg bg-slate-900 text-white flex items-center justify-center font-bold shrink-0">
                 <HeartHandshake className="w-7 h-7 text-teal-400" />
               </div>
               <div>
-                <h2 className="text-xl font-black uppercase tracking-tight">
+                <h2 className="text-lg sm:text-xl font-black uppercase tracking-tight">
                   EquiHealth Navigator
                 </h2>
                 <p className="text-xs text-slate-600 font-semibold">
@@ -64,8 +67,8 @@ export const PrintablePlanModal: React.FC<PrintablePlanModalProps> = ({
               </div>
             </div>
 
-            <div className="text-right">
-              <div className="text-xs font-mono font-bold bg-slate-100 px-2.5 py-1 rounded border border-slate-300">
+            <div className="text-left sm:text-right">
+              <div className="text-xs font-mono font-bold bg-slate-100 px-2.5 py-1 rounded border border-slate-300 inline-block">
                 TOKEN: {plan.planId}
               </div>
               <span className="text-[10px] text-slate-500 mt-0.5 block">
@@ -75,7 +78,7 @@ export const PrintablePlanModal: React.FC<PrintablePlanModalProps> = ({
           </div>
 
           {/* Patient Details & Facility Destination */}
-          <div className="grid grid-cols-2 gap-4 text-xs">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
             <div className="p-3 bg-slate-50 rounded-lg border border-slate-200">
               <span className="text-[10px] font-bold text-slate-400 uppercase block">Patient Name & Age</span>
               <p className="text-sm font-black text-slate-900 mt-0.5">{plan.user.fullName}</p>

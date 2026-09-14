@@ -45,10 +45,11 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ language }) => {
         </div>
 
         {/* Section Switcher Tabs */}
-        <div className="flex items-center bg-slate-100 p-1 rounded-xl border border-slate-200 text-xs font-semibold">
+        <div className="flex flex-wrap items-center bg-slate-100 p-1 rounded-xl border border-slate-200 text-xs font-semibold gap-1">
           <button
+            type="button"
             onClick={() => setAdminSection('analytics')}
-            className={`px-3 py-1.5 rounded-lg transition-all ${
+            className={`min-h-[40px] px-3.5 py-2 rounded-lg transition-all cursor-pointer ${
               adminSection === 'analytics'
                 ? 'bg-white text-sky-900 shadow-xs'
                 : 'text-slate-600 hover:text-slate-900'
@@ -57,8 +58,9 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ language }) => {
             Access Analytics
           </button>
           <button
+            type="button"
             onClick={() => setAdminSection('facilities')}
-            className={`px-3 py-1.5 rounded-lg transition-all ${
+            className={`min-h-[40px] px-3.5 py-2 rounded-lg transition-all cursor-pointer ${
               adminSection === 'facilities'
                 ? 'bg-white text-sky-900 shadow-xs'
                 : 'text-slate-600 hover:text-slate-900'
@@ -67,8 +69,9 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ language }) => {
             Facility & Services
           </button>
           <button
+            type="button"
             onClick={() => setAdminSection('policies')}
-            className={`px-3 py-1.5 rounded-lg transition-all ${
+            className={`min-h-[40px] px-3.5 py-2 rounded-lg transition-all cursor-pointer ${
               adminSection === 'policies'
                 ? 'bg-white text-sky-900 shadow-xs'
                 : 'text-slate-600 hover:text-slate-900'

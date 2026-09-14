@@ -97,32 +97,32 @@ export const HospitalLocation: React.FC<HospitalLocationProps> = ({ hospital }) 
         </svg>
 
         {/* User Marker Overlay */}
-        <div className="absolute left-10 bottom-16 bg-white/90 backdrop-blur-xs px-3 py-1.5 rounded-lg border border-slate-200 shadow-sm text-xs font-bold text-slate-800 flex items-center gap-1.5">
-          <div className="w-2.5 h-2.5 rounded-full bg-sky-500 animate-pulse" />
-          <span>Your Registered Area</span>
+        <div className="absolute left-2.5 sm:left-10 bottom-14 sm:bottom-16 bg-white/90 backdrop-blur-xs px-2 sm:px-3 py-1 sm:py-1.5 rounded-lg border border-slate-200 shadow-sm text-[10px] sm:text-xs font-bold text-slate-800 flex items-center gap-1.5 max-w-[140px] sm:max-w-none">
+          <div className="w-2 h-2 rounded-full bg-sky-500 animate-pulse shrink-0" />
+          <span className="truncate">Your Registered Area</span>
         </div>
 
         {/* Hospital Marker Overlay */}
-        <div className="absolute right-10 top-12 max-w-[240px] bg-white/95 backdrop-blur-xs p-3 rounded-xl border border-teal-300 shadow-md space-y-1">
+        <div className="absolute right-2.5 sm:right-10 top-2.5 sm:top-12 max-w-[190px] sm:max-w-[240px] bg-white/95 backdrop-blur-xs p-2 sm:p-3 rounded-xl border border-teal-300 shadow-md space-y-0.5 sm:space-y-1">
           <div className="flex items-center gap-1.5 text-teal-800 font-bold text-xs">
-            <MapPin className="w-3.5 h-3.5" />
+            <MapPin className="w-3.5 h-3.5 shrink-0" />
             <span className="truncate">{name}</span>
           </div>
-          <p className="text-[11px] text-slate-500">
+          <p className="text-[10px] sm:text-[11px] text-slate-500">
             Lat: {lat.toFixed(4)}, Long: {lng.toFixed(4)}
           </p>
-          <div className="text-[11px] font-semibold text-emerald-700">
+          <div className="text-[10px] sm:text-[11px] font-semibold text-emerald-700">
             {distance.value} {distance.unit} away
           </div>
         </div>
 
         {/* Coordinates Badge */}
-        <div className="absolute bottom-3 right-3 flex items-center gap-2">
+        <div className="absolute bottom-2.5 right-2.5 sm:bottom-3 sm:right-3 flex flex-wrap items-center gap-1.5 sm:gap-2">
           <a
             href={googleMapsUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/90 hover:bg-white text-slate-700 hover:text-teal-800 text-xs font-bold shadow-xs border border-slate-200 transition-colors"
+            className="inline-flex items-center gap-1 px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-lg bg-white/90 hover:bg-white text-slate-700 hover:text-teal-800 text-[10px] sm:text-xs font-bold shadow-xs border border-slate-200 transition-colors"
           >
             <span>Google Maps</span>
             <ExternalLink className="w-3 h-3" />
@@ -132,7 +132,7 @@ export const HospitalLocation: React.FC<HospitalLocationProps> = ({ hospital }) 
             href={openStreetMapUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/90 hover:bg-white text-slate-700 hover:text-teal-800 text-xs font-bold shadow-xs border border-slate-200 transition-colors"
+            className="inline-flex items-center gap-1 px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-lg bg-white/90 hover:bg-white text-slate-700 hover:text-teal-800 text-[10px] sm:text-xs font-bold shadow-xs border border-slate-200 transition-colors"
           >
             <span>OpenStreetMap</span>
             <Compass className="w-3 h-3" />

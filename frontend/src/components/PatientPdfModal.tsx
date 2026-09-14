@@ -36,33 +36,36 @@ export const PatientPdfModal: React.FC<PatientPdfModalProps> = ({
     <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-slate-950/80 backdrop-blur-xs overflow-y-auto animate-fade-in">
       <div className="bg-white rounded-2xl max-w-4xl w-full shadow-2xl border border-slate-300 relative my-6 flex flex-col max-h-[92vh]">
         {/* Modal Action Bar (Hidden when printed) */}
-        <div className="p-4 bg-slate-900 text-white rounded-t-2xl flex items-center justify-between shrink-0 print:hidden">
-          <div className="flex items-center gap-2">
-            <span className="p-1.5 rounded-lg bg-teal-600 text-white">
+        <div className="p-3 sm:p-4 bg-slate-900 text-white rounded-t-2xl flex flex-wrap sm:flex-nowrap items-center justify-between gap-3 shrink-0 print:hidden">
+          <div className="flex items-center gap-2 min-w-0">
+            <span className="p-1.5 rounded-lg bg-teal-600 text-white shrink-0">
               <FileText className="w-4 h-4" />
             </span>
-            <div>
-              <h3 className="text-sm font-bold text-white">
-                Official Patient Clinical Description & Navigation Record (PDF Document)
+            <div className="min-w-0">
+              <h3 className="text-xs sm:text-sm font-bold text-white truncate">
+                Clinical Description & Navigation Record (PDF)
               </h3>
-              <p className="text-[11px] text-slate-400">
+              <p className="text-[10px] sm:text-[11px] text-slate-400 truncate">
                 Spring AI & Rule Engine Assessment • ISO 27001 & ABDM Compliant
               </p>
             </div>
           </div>
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 shrink-0 w-full sm:w-auto justify-end">
             <button
+              type="button"
               onClick={handlePrint}
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-teal-600 hover:bg-teal-700 text-white text-xs font-bold transition-colors cursor-pointer shadow-xs"
+              className="min-h-[44px] inline-flex items-center justify-center gap-1.5 px-3.5 py-2 rounded-xl bg-teal-600 hover:bg-teal-700 text-white text-xs font-bold transition-colors cursor-pointer shadow-xs"
             >
               <Printer className="w-3.5 h-3.5" />
               <span>Print / Save as PDF</span>
             </button>
 
             <button
+              type="button"
               onClick={onClose}
-              className="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors cursor-pointer"
+              className="min-h-[44px] min-w-[44px] flex items-center justify-center rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors cursor-pointer"
+              aria-label="Close modal"
             >
               <X className="w-5 h-5" />
             </button>
@@ -102,7 +105,7 @@ export const PatientPdfModal: React.FC<PatientPdfModalProps> = ({
               1. Patient Demographic & Socio-Economic Description
             </h2>
 
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 p-4 rounded-xl border border-slate-200 text-xs">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 p-4 rounded-xl border border-slate-200 text-xs">
               <div>
                 <span className="text-[10px] uppercase font-bold text-slate-400 block">Full Name</span>
                 <strong className="text-slate-900 text-sm">{user.fullName || 'Priya Sharma'}</strong>
@@ -126,7 +129,7 @@ export const PatientPdfModal: React.FC<PatientPdfModalProps> = ({
               </div>
               <div>
                 <span className="text-[10px] uppercase font-bold text-slate-400 block">Occupation / Status</span>
-                <strong className="text-slate-900">{user.employmentStatus || 'Informal/Daily wages (Domestic)'}</strong>
+                <strong className="text-slate-900 break-words">{user.employmentStatus || 'Informal/Daily wages (Domestic)'}</strong>
               </div>
               <div>
                 <span className="text-[10px] uppercase font-bold text-slate-400 block">Health Insurance</span>
@@ -308,21 +311,23 @@ export const PatientPdfModal: React.FC<PatientPdfModalProps> = ({
         </div>
 
         {/* Modal Footer Controls (Hidden when printed) */}
-        <div className="p-4 bg-slate-50 rounded-b-2xl border-t border-slate-200 flex items-center justify-between shrink-0 print:hidden">
-          <p className="text-xs text-slate-500">
+        <div className="p-3 sm:p-4 bg-slate-50 rounded-b-2xl border-t border-slate-200 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-2.5 shrink-0 print:hidden">
+          <p className="text-xs text-slate-500 text-center sm:text-left">
             Tip: Click &quot;Print / Save as PDF&quot; to print a paper intake slip or save as PDF.
           </p>
-          <div className="flex items-center gap-2">
+          <div className="flex flex-wrap items-center justify-center sm:justify-end gap-2">
             <button
+              type="button"
               onClick={handlePrint}
-              className="px-4 py-2 bg-slate-900 hover:bg-slate-800 text-white rounded-xl text-xs font-bold flex items-center gap-1.5 cursor-pointer"
+              className="min-h-[44px] px-4 py-2 bg-slate-900 hover:bg-slate-800 text-white rounded-xl text-xs font-bold flex items-center justify-center gap-1.5 cursor-pointer flex-1 sm:flex-initial"
             >
-              <Printer className="w-3.5 h-3.5 text-teal-400" />
+              <Printer className="w-3.5 h-3.5 text-teal-400 shrink-0" />
               <span>Print PDF Document</span>
             </button>
             <button
+              type="button"
               onClick={onClose}
-              className="px-4 py-2 bg-teal-600 hover:bg-teal-700 text-white rounded-xl text-xs font-bold cursor-pointer"
+              className="min-h-[44px] px-5 py-2 bg-teal-600 hover:bg-teal-700 text-white rounded-xl text-xs font-bold cursor-pointer text-center flex items-center justify-center flex-1 sm:flex-initial"
             >
               Close
             </button>

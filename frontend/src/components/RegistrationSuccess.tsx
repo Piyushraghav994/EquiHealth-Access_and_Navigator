@@ -66,11 +66,11 @@ export const RegistrationSuccess: React.FC<RegistrationSuccessProps> = ({
         </div>
 
         {/* EquiHealth ID Display Box */}
-        <div className="bg-teal-50/70 border-2 border-teal-200/80 rounded-2xl p-5 sm:p-6 space-y-2 text-center">
+        <div className="bg-teal-50/70 border-2 border-teal-200/80 rounded-2xl p-4 sm:p-6 space-y-2 text-center">
           <span className="text-xs font-semibold text-teal-800 uppercase tracking-wider block">
             Your EquiHealth ID
           </span>
-          <div className="text-2xl sm:text-3xl font-mono font-extrabold text-teal-900 tracking-widest selection:bg-teal-200 select-all py-1">
+          <div className="text-xl min-[380px]:text-2xl sm:text-3xl font-mono font-extrabold text-teal-900 tracking-wider sm:tracking-widest selection:bg-teal-200 select-all py-1 break-all">
             {equiHealthId}
           </div>
           <div className="flex items-center justify-center gap-1.5 text-xs text-teal-700 pt-1">
@@ -102,7 +102,7 @@ export const RegistrationSuccess: React.FC<RegistrationSuccessProps> = ({
             type="button"
             id="btn-copy-equihealth-id"
             onClick={handleCopy}
-            className="w-full sm:w-auto px-5 py-2.5 bg-white border border-slate-300 hover:bg-slate-50 text-slate-700 text-sm font-semibold rounded-xl transition-colors cursor-pointer flex items-center justify-center gap-2"
+            className="min-h-[44px] w-full sm:w-auto px-5 py-2.5 bg-white border border-slate-300 hover:bg-slate-50 text-slate-700 text-sm font-semibold rounded-xl transition-colors cursor-pointer flex items-center justify-center gap-2"
           >
             {copied ? (
               <>
@@ -121,7 +121,7 @@ export const RegistrationSuccess: React.FC<RegistrationSuccessProps> = ({
             type="button"
             id="btn-continue-to-login"
             onClick={() => onContinueToLogin(equiHealthId)}
-            className="w-full sm:w-auto px-6 py-2.5 bg-teal-800 hover:bg-teal-900 text-white text-sm font-semibold rounded-xl shadow-xs transition-colors cursor-pointer flex items-center justify-center gap-2"
+            className="min-h-[44px] w-full sm:w-auto px-6 py-2.5 bg-teal-800 hover:bg-teal-900 text-white text-sm font-semibold rounded-xl shadow-xs transition-colors cursor-pointer flex items-center justify-center gap-2"
           >
             <span>Continue to Login</span>
             <ArrowRight className="w-4 h-4" />
